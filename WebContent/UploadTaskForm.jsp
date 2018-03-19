@@ -4,15 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>File Upload</title>
+  <title>CODECOD 1.0</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- css -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/style.css" rel="stylesheet" media="screen">
+  <link href="color/default.css" rel="stylesheet" media="screen">
+  <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
-<center>
-        <form method="post" action="UploadTaskController" enctype="multipart/form-data">
-            Select file to upload: <input type="file" name="uploadFile" />
-            <br/><br/>
-            <input type="submit" value="Upload" />
-        </form>
-    </center>
+
+  <section id="contact" class="home-section bg-white">   
+  	<div class="container">
+  	  <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <form action="UploadTaskController" method="post" enctype="multipart/form-data" role="form" class="contactForm">
+            <div class="form-group">
+              <input type="file" name="uploadFile" />
+              <div class="validation"></div>
+            </div>
+            <button type="submit" value="Upload" class="btn btn-theme btn-lg btn-block">Upload</button>
+          </form>
+        </div>
+      </div>
+  	</div>
+  </section>
 </body>
 </html>
