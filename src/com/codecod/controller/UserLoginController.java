@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import com.codecod.model.UserModel;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet(name = "LoginController", urlPatterns = { "/LoginController" })
+@WebServlet("/UserLoginController")
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,35 +45,27 @@ public class UserLoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String passwd = request.getParameter("password");
 
 		MySQLConnection connection = MySQLConnection.getInstance();
-		UserModel user = null;
+		RequestDispatcher page = null;
+
 		try {
 			ResultSet rs = connection.executeTake(UserModel.selectByEmailAndPassword(email, passwd));
+
 			if (rs.next()) {
-				user = new UserModel();
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-				user.setName(rs.getString("name"));
-				user.setId(rs.getString("id"));
-				user.setRole(rs.getString("role"));
-				
-				request.setAttribute("user", user);
-				getServletContext().getRequestDispatcher("/success.jsp").forward(request,response);
-			} else {
-				response.sendRedirect("errorpage.html");
+				if (rs.getString("role").equals("Worker")) {
+					page = getServletContext().getRequestDispatcher("/microtask_market.jsp");
+				} else {
+					page = getServletContext().getRequestDispatcher("/uploadTask.jsp");
+				}
+
+				page.forward(request, response);
 			}
+
 		} catch (SQLException e) {
 			throw new ServletException(e);
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "UserLoginController []";
-	}
-
 }

@@ -19,12 +19,12 @@
   	<div class="container">
   	  <div class="row">
         <div class="col-md-offset-2 col-md-8">
-          <form action="UploadTaskController" method="post" enctype="multipart/form-data" role="form" class="contactForm">
+          <form action="uploadFile" method="post" enctype="multipart/form-data" role="form" class="contactForm">
             <div class="form-group">
               <input type="file" name="uploadFile" />
               <div class="validation"></div>
             </div>
-            <button type="submit" value="Upload" class="btn btn-theme btn-lg btn-block">Upload</button>
+            <button type="submit" value="Upload" class="btn btn-theme btn-lg btn-block">Upload and Decompose</button>
           </form>
         </div>
       </div>

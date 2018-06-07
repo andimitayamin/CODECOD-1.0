@@ -2,35 +2,63 @@ package com.codecod.model;
 
 import java.util.List;
 
-import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.stmt.BlockStmt;
 
 public class MicrotaskModel {
-	TaskModel task;
-	SimpleName methodName;
+	String microtaskID;
+	String declaration;
+	String pathFile;
+	String methodName;
 	BlockStmt methodBody;
 	String decompositionType;
 	List<TypeOfSmell> smells;
+	
 
 	@Override
 	public String toString() {
-		return "MicrotaskModel [methodName=" + methodName + ", methodBody=" + methodBody + ", decompositionType="
+		return "MicrotaskModel [declaration=" + declaration +", methodName=" + methodName + ", methodBody=" + methodBody + ", decompositionType="
 				+ decompositionType + ", smells=" + smells + "]";
 	}
 
-	public MicrotaskModel(TaskModel task, SimpleName methodName, BlockStmt methodBody) {
+	public MicrotaskModel(String microtaskID, String declaration, String methodName, BlockStmt methodBody, String path) {
 		super();
-		this.task = task;
+		this.microtaskID = microtaskID;
+		this.declaration = declaration;
 		this.methodName = methodName;
 		this.methodBody = methodBody;
+		this.pathFile = path;
+	}
+	
+	public String getDeclaration() {
+		return declaration;
 	}
 
-	public SimpleName getMethod_name() {
+	public void setDeclaration(String declaration) {
+		this.declaration = declaration;
+	}
+	
+	public String getMethodName() {
 		return methodName;
 	}
 
-	public BlockStmt getMethod_body() {
+	public BlockStmt getMethodBody() {
 		return methodBody;
+	}
+	
+	public String getPathFile() {
+		return pathFile;
+	}
+
+	public void setPathFile(String pathFile) {
+		this.pathFile = pathFile;
+	}
+
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
+	}
+
+	public void setMethodBody(BlockStmt method_body) {
+		this.methodBody = method_body;
 	}
 
 	public String getDecompositionType() {
@@ -41,16 +69,17 @@ public class MicrotaskModel {
 		this.decompositionType = decompositionType;
 	}
 
-	public List<TypeOfSmell> getSmells() {
-		return smells;
-	}
-
-	public void setSmells(List<TypeOfSmell> smells) {
-		this.smells = smells;
-	}
-
+	
 	public String insertMicrotask() {
 		return String.format(
-				"INSERT INTO `microtask` (`class_name`, `method_name`, `method_body`) VALUES ('%s','%s','%s')",task.getId(),this.methodName,this.methodBody);
+				"INSERT INTO `microtask`(`method_id`, `declaration`, `method_name`, `method_body`, `path`) VALUES ('%s','%s','%s','%s','%s')",this.microtaskID,this.declaration,this.methodName,this.methodBody, this.pathFile);
+	}
+
+	public String getMicrotaskID() {
+		return microtaskID;
+	}
+
+	public void setMicrotaskID(String microtaskID) {
+		this.microtaskID = microtaskID;
 	}
 }

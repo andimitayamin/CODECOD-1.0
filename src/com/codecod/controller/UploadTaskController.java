@@ -70,6 +70,7 @@ public class UploadTaskController extends HttpServlet {
 		out.write("<html><head></head><body>");
 
 		try {
+			
 			List<FileItem> fileItemsList = uploader.parseRequest(request);
 			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
 			while (fileItemsIterator.hasNext()) {
@@ -78,18 +79,17 @@ public class UploadTaskController extends HttpServlet {
 				System.out.println("FileName=" + fileItem.getName());
 				System.out.println("Size in bytes =" + fileItem.getSize());
 				
-
+//				TaskModel task = new TaskModel(fileItem);
 				
-				TaskModel task = new TaskModel(fileItem);
-				
-				MySQLConnection connection = MySQLConnection.getInstance();
-				connection.executeStore(task.insertTask());
+//				MySQLConnection connection = MySQLConnection.getInstance();
+//				connection.executeStore(task.insertTask());
 
-				List<MicrotaskModel> microtasks = task.getMicrotaskByMethod();
-				for (MicrotaskModel microtask : microtasks) {
-					connection.executeStore(microtask.insertMicrotask());
-					System.out.println(microtask);
-				}
+		//		List<MicrotaskModel> microtasks = task.getMicrotaskByMethod();
+				
+//				for (MicrotaskModel microtask : microtasks) {
+//					connection.executeStore(microtask.insertMicrotask());
+//					System.out.println(microtask);
+//				}
 			}
 		} catch (FileUploadException e) {
 			out.write("exception in uploading file");

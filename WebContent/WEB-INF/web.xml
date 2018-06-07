@@ -4,18 +4,17 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
- 
+
   <servlet>
-    <description></description>
-    <display-name>UserLoginController</display-name>
+    <display-name>Login</display-name>
     <servlet-name>UserLoginController</servlet-name>
     <servlet-class>com.codecod.controller.UserLoginController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserLoginController</servlet-name>
-    <url-pattern>/UserLoginController</url-pattern>
+    <url-pattern>/UserLogin</url-pattern>
   </servlet-mapping>
-  
+ 
   <servlet>
     <display-name>UploadTaskController</display-name>
     <servlet-name>UploadTaskController</servlet-name>
@@ -25,4 +24,65 @@
     <servlet-name>UploadTaskController</servlet-name>
     <url-pattern>/uploadFile</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <display-name>jarDemo</display-name>
+    <servlet-name>jarDemo</servlet-name>
+    <servlet-class>com.parse.file.jarDemo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>jarDemo</servlet-name>
+    <url-pattern>/uploadJar</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <display-name>tes_decomposer</display-name>
+    <servlet-name>tes_decomposer</servlet-name>
+    <servlet-class>com.parse.file.tes_decomposer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>tes_decomposer</servlet-name>
+    <url-pattern>/uploadZip</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <display-name>market</display-name>
+    <servlet-name>CodeMarketController</servlet-name>
+    <servlet-class>com.codecod.controller.CodeMarketController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CodeMarketController</servlet-name>
+    <url-pattern>/CodeMarket</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <display-name>microtask</display-name>
+    <servlet-name>MicrotaskController</servlet-name>
+    <servlet-class>com.codecod.controller.MicrotaskController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MicrotaskController</servlet-name>
+    <url-pattern>/microtask/*</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+    <display-name>microtask</display-name>
+    <servlet-name>answeredMicrotask</servlet-name>
+    <servlet-class>com.codecod.controller.answeredMicrotask</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>answeredMicrotask</servlet-name>
+    <url-pattern>/answeredMicrotask/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <display-name>QC</display-name>
+    <servlet-name>MVcontroller</servlet-name>
+    <servlet-class>com.codecod.controller.MVcontroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVcontroller</servlet-name>
+    <url-pattern>/QC</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

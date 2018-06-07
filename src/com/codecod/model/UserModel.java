@@ -53,7 +53,7 @@ public class UserModel {
 	}
 
 	public static String selectByEmailAndPassword(String email, String password) {
-		return String.format("select * from user where email='%s' and password = '%s'", email, password);
+		return String.format("SELECT * FROM `user` WHERE `email` = '%s' AND `password` = '%s'", email, password);
 	}
 
 	@Override
