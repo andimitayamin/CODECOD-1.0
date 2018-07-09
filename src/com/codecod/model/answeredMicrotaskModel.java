@@ -56,6 +56,6 @@ public class answeredMicrotaskModel {
 	
 	public String save_answer() {
 		return String.format(
-				"INSERT INTO `detected_smell`(`microtaskID`, `name`, `line`, `workerID`) VALUES ('%s','%s','%s','123')", this.microtaskID,this.name,this.line);
+				"INSERT INTO `detected_smell`(`microtaskID`, `name`, `line`, `workerID`) VALUES ('%s','%s','%s','%s')", this.microtaskID,this.name,this.line,this.workerID);
 	}
 }

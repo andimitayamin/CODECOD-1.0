@@ -11,6 +11,9 @@ public class MicrotaskModel {
 	String methodName;
 	BlockStmt methodBody;
 	String decompositionType;
+	int numOfWorker;
+	
+	String classBody;
 	List<TypeOfSmell> smells;
 	
 
@@ -18,6 +21,11 @@ public class MicrotaskModel {
 	public String toString() {
 		return "MicrotaskModel [declaration=" + declaration +", methodName=" + methodName + ", methodBody=" + methodBody + ", decompositionType="
 				+ decompositionType + ", smells=" + smells + "]";
+	}
+
+	public MicrotaskModel() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public MicrotaskModel(String microtaskID, String declaration, String methodName, BlockStmt methodBody, String path) {
@@ -69,17 +77,32 @@ public class MicrotaskModel {
 		this.decompositionType = decompositionType;
 	}
 
-	
-	public String insertMicrotask() {
-		return String.format(
-				"INSERT INTO `microtask`(`method_id`, `declaration`, `method_name`, `method_body`, `path`) VALUES ('%s','%s','%s','%s','%s')",this.microtaskID,this.declaration,this.methodName,this.methodBody, this.pathFile);
-	}
-
 	public String getMicrotaskID() {
 		return microtaskID;
 	}
 
 	public void setMicrotaskID(String microtaskID) {
 		this.microtaskID = microtaskID;
+	}
+	
+	public int getNumOfWorker() {
+		return numOfWorker;
+	}
+
+	public void setNumOfWorker(int numOfWorker) {
+		this.numOfWorker = numOfWorker;
+	}
+	
+	public String getClassBody() {
+		return classBody;
+	}
+
+	public void setClassBody(String classBody) {
+		this.classBody = classBody;
+	}
+
+	public String insertMicrotask() {
+		return String.format(
+				"INSERT INTO `microtask`(`method_id`, `declaration`, `method_name`, `method_body`, `path`) VALUES ('%s','%s','%s','%s','%s')",this.microtaskID,this.declaration,this.methodName,this.methodBody, this.pathFile);
 	}
 }

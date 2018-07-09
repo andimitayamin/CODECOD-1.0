@@ -2,10 +2,9 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<title>Dashboard - Bootstrap Admin Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,10 +19,11 @@
 	<!--[if lt IE 9]>
 	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	    <![endif]-->
-<title>Insert title here</title>
 </head>
+
 <body>
- <div class="navbar navbar-fixed-top">
+
+<div class="navbar navbar-fixed-top">
 	
 	<div class="navbar-inner">
 		
@@ -90,12 +90,20 @@
 	
 		<div class="container">
 
-			<ul class="mainnav">				
+			<ul class="mainnav">
+			
+				<li>
+					<a href="dashboard.jsp">
+						<i class="icon-dashboard"></i>
+						<span>Dashboard</span>
+					</a>	    				
+				</li>
+			
 				<li class="active">
-					<a href="Market.html">
-						<i class="icon-list-alt"></i>
-						<span>Market</span>
-					</a>    				
+					<a href="#">
+						<i class="icon-tasks"></i>
+						<span>List of Task</span> 
+					</a> 				
 				</li>
 			
 			</ul>
@@ -116,76 +124,33 @@
 	    	
 	     <div class="row">
 	      	
-	      	<div class="span4">
-			<!-- /widget MICROTASK CLASS -->
+	      	<div class="span12">
+	      		          <!-- /widget --> 
+
 	          <div class="widget widget-nopad">
 	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Single Class</h3>
+	              <h3> List Task</h3>
 	            </div>
+	            <p>
+	            <c:forEach var="listOfTask" items="${list}">
+	            <div class ="span4">
 	            <div class="widget-content">
 	              <ul class="news-items">
-	              <c:forEach var="classes" items="${classList}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <h3><a href="/CODECOD-1.0/microtask/<c:out value="${classes.clazzID}"/>" class="news-item-title" target="_blank"><c:out value = "${classes.clazzName}"/></a></h3>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${classes.path}" /> </p> --%>
-							<p class="news-item-preview"> <a href="microtask/<c:out value = "${classes.taskName}" />" target ="_blank"> download full file</a> </p>	
+					<li>
+	                  <div class="news-item-date"> <span class="news-item-day"><c:out value="${listOfTask.numOfTask}"/></span> <span class="news-item-month">parsed</span> </div>
+	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/task/<c:out value="${listOfTask.taskName}"/>" class="news-item-title" target="_blank"><c:out value = "${listOfTask.taskName}"/></a>
 	                  </div>
 	                  
 	                </li>
-	               </c:forEach>
 	              </ul>
 	            </div>
+	            <!-- /widget-content --> 
 	          </div>
+	         </c:forEach>
+	         </div> 
+
          	</div>
-         	
-         	
-         	<div class="span4">
-			<!-- /widget MICROTASK : METHOD -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Single Method</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="microtask" items="${microtaskList}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/microtask/<c:out value="${microtask.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtask.methodName}"/></a>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${microtask.pathFile}" /> </p> --%>
-							
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-         	
-         	<div class="span4">
-			<!-- /widget MAJORITY VOTE -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Majority Vote</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="taskMV" items="${listVote}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day"><c:out value = "${taskMV.voter}" /></span> <span class="news-item-month">For Vote</span> </div>
-	                  <div class="news-item-detail">
-	                  	 <a href="/CODECOD-1.0/vote/<c:out value="${taskMV.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${taskMV.microtaskID}"/></a>
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-			
-			
+
          </div>      
 	      	
     
@@ -194,7 +159,24 @@
 	</div> <!-- /main-inner -->
     
 </div> <!-- /main -->
-        
+    
+
+    
+
+<div class="extra">
+
+	<div class="extra-inner">
+
+		<div class="container">
+			CODECOD 1.0
+		</div> <!-- /container -->
+
+	</div> <!-- /extra-inner -->
+
+</div> <!-- /extra -->
+
+
+    
     
 <div class="footer">
 	
@@ -222,6 +204,3 @@
 <script src="js/chart.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/base.js"></script>
-
-</body>
-</html>

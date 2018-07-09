@@ -253,7 +253,7 @@ textarea {
 .main {
 	padding-bottom: 2em;
 	
-	border-bottom: 1px solid #000;
+/* 	border-bottom: 1px solid #000; */
 }
 
 
@@ -307,9 +307,10 @@ textarea {
 */
 
 .footer {
-	margin-top: 0;
-	
+	position : fixed;
+	width : 100%;
 	border-top: 1px solid #292929;
+	bottom : 0px;
 }
 
 .footer-inner {
@@ -393,7 +394,8 @@ textarea {
 			margin-left: 13px;
 			margin-right: -2px;
 			margin-bottom: 10px;
-			top :-6px;
+			margin-top : 5px;
+			top :auto;
 			
 			font-size: 40px;
 			color: #555;

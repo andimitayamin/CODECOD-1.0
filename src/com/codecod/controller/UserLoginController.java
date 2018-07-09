@@ -5,11 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.codecod.connection.MySQLConnection;
 import com.codecod.model.UserModel;
@@ -50,18 +52,24 @@ public class UserLoginController extends HttpServlet {
 
 		MySQLConnection connection = MySQLConnection.getInstance();
 		RequestDispatcher page = null;
+		
 
 		try {
 			ResultSet rs = connection.executeTake(UserModel.selectByEmailAndPassword(email, passwd));
 
 			if (rs.next()) {
+				HttpSession session = request.getSession();
+				session.setAttribute("username", rs.getString("id"));
+				
 				if (rs.getString("role").equals("Worker")) {
-					page = getServletContext().getRequestDispatcher("/microtask_market.jsp");
+					response.sendRedirect("CodeMarket");
+					
 				} else {
-					page = getServletContext().getRequestDispatcher("/uploadTask.jsp");
+					page = getServletContext().getRequestDispatcher("/dashboard.jsp");
+					page.forward(request, response);
 				}
 
-				page.forward(request, response);
+				session.setAttribute("role", rs.getString("role"));
 			}
 
 		} catch (SQLException e) {

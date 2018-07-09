@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -79,12 +80,15 @@ public class tes_decomposer extends HttpServlet {
 //		System.out.println(comment);
 		
 
-		
+		HttpSession session = request.getSession(false);
+		String id = null;
 		try {
 			List<FileItem> fileItemsList = uploader.parseRequest(request);
 			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();	
-
 			
+			if(session!=null) {
+				id=(String)session.getAttribute("username");  
+			}
 			while(fileItemsIterator.hasNext()) {
 				FileItem fileItem = fileItemsIterator.next();			
 				File files = new File(String.format("%s//%s", DIR, fileItem.getName()));
@@ -115,11 +119,15 @@ public class tes_decomposer extends HttpServlet {
 				for (String temp : PathFromDecomposer) {					
 
 					task.setTaskPath(temp.replace("\\", "\\\\"));
-					task.setTaskName(files.getName());						
+					task.setTaskName(files.getName());
+					task.setReqId(id);
 					connection.executeStore(task.insertTask());
 				}				
 
 			}
+			
+			response.sendRedirect("list_of_task");
+			
 		} catch (FileUploadException e) {
 			out.write("exception in uploading file");
 		} catch (Exception e) {

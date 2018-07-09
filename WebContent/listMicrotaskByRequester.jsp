@@ -90,12 +90,20 @@
 	
 		<div class="container">
 
-			<ul class="mainnav">				
+			<ul class="mainnav">
+			
+				<li>
+					<a href="dashboard.jsp">
+						<i class="icon-dashboard"></i>
+						<span>Dashboard</span>
+					</a>	    				
+				</li>
+			
 				<li class="active">
-					<a href="Market.html">
-						<i class="icon-list-alt"></i>
-						<span>Market</span>
-					</a>    				
+					<a href="#">
+						<i class="icon-tasks"></i>
+						<span>List of Task</span> 
+					</a> 				
 				</li>
 			
 			</ul>
@@ -116,75 +124,25 @@
 	    	
 	     <div class="row">
 	      	
-	      	<div class="span4">
-			<!-- /widget MICROTASK CLASS -->
+	      	<div class="span6">
+			<!-- /widget  -->
 	          <div class="widget widget-nopad">
 	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Single Class</h3>
+	              <h3>Microtask List</h3>
 	            </div>
 	            <div class="widget-content">
 	              <ul class="news-items">
-	              <c:forEach var="classes" items="${classList}">
+	              <c:forEach var="microtasks" items="${mtasks}">
 	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <h3><a href="/CODECOD-1.0/microtask/<c:out value="${classes.clazzID}"/>" class="news-item-title" target="_blank"><c:out value = "${classes.clazzName}"/></a></h3>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${classes.path}" /> </p> --%>
-							<p class="news-item-preview"> <a href="microtask/<c:out value = "${classes.taskName}" />" target ="_blank"> download full file</a> </p>	
-	                  </div>
+	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/result/<c:out value="${microtasks.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtasks.methodName}"/></a>
+	                  
 	                  
 	                </li>
 	               </c:forEach>
 	              </ul>
 	            </div>
 	          </div>
-         	</div>
-         	
-         	
-         	<div class="span4">
-			<!-- /widget MICROTASK : METHOD -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Single Method</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="microtask" items="${microtaskList}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/microtask/<c:out value="${microtask.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtask.methodName}"/></a>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${microtask.pathFile}" /> </p> --%>
-							
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-         	
-         	<div class="span4">
-			<!-- /widget MAJORITY VOTE -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Majority Vote</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="taskMV" items="${listVote}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day"><c:out value = "${taskMV.voter}" /></span> <span class="news-item-month">For Vote</span> </div>
-	                  <div class="news-item-detail">
-	                  	 <a href="/CODECOD-1.0/vote/<c:out value="${taskMV.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${taskMV.microtaskID}"/></a>
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-			
+         	</div>		
 			
          </div>      
 	      	

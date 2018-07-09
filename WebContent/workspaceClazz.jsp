@@ -99,8 +99,8 @@
 					<div class="span8">
 						<div class="widget">
 							<div class="widget-content">
-								<h1>${microtask.methodName}</h1>							
-									<pre class="line-numbers"><code class="language-java">${microtask.declaration}${microtask.methodBody}</code></pre>
+								<h1>${microtaskClazz.methodName}</h1>							
+									<pre class="line-numbers"><code class="language-java">${microtaskClazz.classBody}</code></pre>
 							</div>
 						</div>
 					</div>
@@ -111,8 +111,11 @@
 					  <div class="widget-content">
 						<div class="span3">
 								<h3>Code Smell Detected </h3>
-								<p>	<h3><button class="btn btn-info" onclick="addLongMethod();"><i  class="icon-plus"></i> </button>  Long Method </h3>
-								<p>	<h3><button class="btn btn-info" onclick="addLongParameter();"><i  class="icon-plus"></i> </button>  Long Parameter </h3>
+								<p>	<h3><button class="btn btn-info" onclick="addLargeClass();"><i  class="icon-plus"></i> </button>  Large Class </h3>
+								<p>	<h3><button class="btn btn-info" onclick="addPrimitiveObs();"><i  class="icon-plus"></i> </button>  Primitive Obsession </h3>
+								<p>	<h3><button class="btn btn-info" onclick="addLazyClass();"><i  class="icon-plus"></i> </button>  Lazy Class</h3>	
+								<p>	<h3><button class="btn btn-info" onclick="addSpeculativeGen();"><i  class="icon-plus"></i> </button>  Speculative Generality </h3>
+								<p>	<h3><button class="btn btn-info" onclick="addTempField();"><i  class="icon-plus"></i> </button>  Temporary Field </h3>		
 								<p>	<h3><button class="btn btn-info" onclick="addBadComment();"><i  class="icon-plus"></i> </button>  BadComment </h3>
 								<p>	<h3><button class="btn btn-info" onclick="addSwitch();"><i  class="icon-plus"></i> </button>  Switch Statement </h3>							
 						</div>						
@@ -123,16 +126,19 @@
 																
 								<form action = "../answeredMicrotask"  method="post" id="selectSmell">
 												
-									<div id="addLongMethod">Line of long method	long method area		</div>
-									<div id="addLongParameter">Line of long parameter	long parameter area		</div>
-									<div id="addBadComment">Line of bad comment	Bad comment area		</div>
-									<div id="addSwitchStatement">Line of switch statement	switch statement area		</div>												
-									<input type = "hidden" name="methodId" value="${microtask.methodName}">							
+									<div id="addLargeClass">Line of Large Class	</div>
+									<div id="addPrimitiveObs">Line of Primitive Obsession </div>
+									<div id="addLazyClass">Line of Lazy Class	</div>
+									<div id="addSpeculativeGen">Line of Speculative Generality	</div>
+									<div id="addTempField">Line of Temporary Field	</div>
+									<div id="addBadComment">Line of Bad Comment	</div>
+									<div id="addSwitchStatement">Line of switch statement area		</div>												
+									<input type = "hidden" name="methodId" value="${microtaskClazz.methodName}">							
 									
 										<input type = "hidden" name="hiddenSmellIni" id="IDhiddenSmell"/>
 										<input type = "hidden" name="hiddenSmellLine" id="IDhiddenSmellLine"/>
 										
-										<input type = "hidden" name="microtaskID" id="microtaskID" value="${microtask.microtaskID}"/>
+										<input type = "hidden" name="microtaskID" id="microtaskID" value="${microtaskClazz.microtaskID}"/>
 									<p>	<input type = "button" value="send" onclick="sendValue();" />
 									
 								</form>	
@@ -166,7 +172,7 @@
 			</div>
 			<!-- /container -->
 
-		</div> 
+		</div>
 		<!-- /footer-inner -->
 
 	</div>
@@ -181,21 +187,21 @@
 	<script>
 		var fileId=0;
 	
-		function addLongMethod(){
+		function addLargeClass(){
 			fileId++;
-			var longMethod = '<input type="hidden" name="longMethod" value="Long Method" id="smell-'+fileId+'" />';
-			var lineLongMethod = '<input type="text" name="lineLongMethod" id="line-'+fileId+'" />'
-	        addElement('addLongMethod', 'p', 'file-' + fileId, longMethod);
-			addElement('addLongMethod','p','part-'+fileId, lineLongMethod);
+			var longMethod = '<input type="hidden" name="largeClass" value="Large Class" id="smell-'+fileId+'" />';
+			var lineLongMethod = '<input type="text" name="lineLargeClass" id="line-'+fileId+'" />'
+	        addElement('addLargeClass', 'p', 'file-' + fileId, longMethod);
+			addElement('addLargeClass','p','part-'+fileId, lineLongMethod);
 		}
 		
-		function addLongParameter(){
-			fileId++;
-			var longParameter = '<input type="hidden" name="longParameter" value="Long Parameter" id="smell-'+fileId+'" />';
-			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" />'
-	        addElement('addLongParameter', 'p', 'file-' + fileId, longParameter);
-			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
-		}
+// 		function addLongParameter(){
+// 			fileId++;
+// 			var longParameter = '<input type="hidden" name="longParameter" value="Long Parameter" id="smell-'+fileId+'" />';
+// 			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" />'
+// 	        addElement('addLongParameter', 'p', 'file-' + fileId, longParameter);
+// 			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
+// 		}
 		
 	    function addElement(parentId, elementTag, elementId, html) {
 	        // Adds an element to the document

@@ -92,8 +92,8 @@
 				
 				<li class="active">
 					<a href="#">
-						<i class="icon-check"></i>
-						<span>Quality Control</span> 
+						<i class="icon-copy"></i>
+						<span>Task</span> 
 					</a> 				
 				</li>
 				</ul>
@@ -110,58 +110,31 @@
 		<div class="main-inner">
 			<div class="container">
 				<div class="row">
-					<div class="span6">
+					<div class="span12">
 						<div class="widget">
 							<div class="widget-content">
-								<h1>Output Agreement</h1>							
-									<table class="table table-striped table-bordered">
-					               	<thead>
-					               		<tr>
-					               			<th> Smell </th>
-					               			<th> Line </th>
-					               			<th> Vote </th>
-					               		</tr>
-					               	</thead>
-					               	<tbody>
-					               	 <c:forEach var="OA" items="${OutAgree}">
-					               		<tr>
-					               			<td><c:out value = "${OA.smell}" /></td>
-					               			<td><c:out value = "${OA.line}" /></td>
-					               			<td><c:out value = "${OA.voter}" /></td>
-					               		</tr>
-					               	 </c:forEach>
-					               	</tbody>
-					               </table>		
+								<h1>Task Details</h1>							
+											<table class="table table-striped table-bordered">
+								               	<thead>
+								               		<tr>
+								               		 <th> Path File </th>
+					    		           			 <th> Microtask(Methods) </th>
+					            		   			 <th> Worker </th>
+					               					</tr>
+					               				</thead>
+					               				<tbody>
+					               				<c:forEach var="detail" items="${details}">
+					               					<tr>
+					               					 <td><c:out value = "${detail.pathFile}"/></td>
+					               					 <td><a href= "/CODECOD-1.0/result/<c:out value = "${detail.microtaskID}" />" ><c:out value = "${detail.methodName}" /></a></td>
+					               					 <td><c:out value = "${detail.numOfWorker}" /></td>
+					               					</tr>
+					               				</c:forEach>
+					               				</tbody>	
+					              			</table>
 							</div>
 						</div>
 					</div>
-
-
-				  <div class="span6">
-					<div class="widget">
-					  <div class="widget-content">
-								<h3>Majority Vote </h3>
-					               <table class="table table-striped table-bordered">
-					               	<thead>
-					               		<tr>
-					               			<th> Smell </th>
-					               			<th> Line </th>
-					               			<th> Vote </th>
-					               		</tr>
-					               	</thead>
-					               	<tbody>
-					               	 <c:forEach var="MV" items="${MajVot}">
-					               		<tr>
-					               			<td><c:out value = "${MV.smell}" /></td>
-					               			<td><c:out value = "${MV.line}" /></td>
-					               			<td><c:out value = "${MV.voter}" /></td>
-					               		</tr>
-					               	 </c:forEach>
-					               	</tbody>
-					               </table>					
-					  </div>						
-					</div>
-				  </div>
 				</div>
 			</div>
 			<!-- /container -->

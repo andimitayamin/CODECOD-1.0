@@ -1,10 +1,9 @@
 package com.codecod.model;
 
-import java.util.Optional;
-
 import com.github.javaparser.ast.Node;
 
-public class ClazzModel {
+public class ClazzModel extends TaskModel{
+	String clazzName;
 	String clazzID;
 	Node clazzBody;
 	String path;
@@ -17,8 +16,20 @@ public class ClazzModel {
 		this.clazzBody = clazzBody;
 	}
 	
-
 	
+	public ClazzModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getClazzName() {
+		return clazzName;
+	}
+
+	public void setClazzName(String clazzName) {
+		this.clazzName = clazzName;
+	}
+
 	public String getClazzID() {
 		return clazzID;
 	}

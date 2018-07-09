@@ -16,7 +16,7 @@
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/pages/dashboard.css" rel="stylesheet">
-	<link href="css/pages/upload.css" rel="stylesheet" type="text/css">
+
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -81,45 +81,7 @@
 			</div> <!-- /navbar-inner -->
 			
 		</div> <!-- /navbar -->
-		    
-		
-		
-		
-		    
-		<div class="subnavbar">
-		
-			<div class="subnavbar-inner">
-			
-				<div class="container">
-		
-					<ul class="mainnav">
-					
-						<li>
-							<a href="dashboard.jsp">
-								<i class="icon-dashboard"></i>
-								<span>Dashboard</span>
-							</a>	    				
-						</li>
-						
-						
-						
-						<li class="active">
-							<a href="#">
-								<i class="icon-upload"></i>
-								<span>Upload Task</span>
-							</a>    				
-						</li>
-					
-					</ul>
-		
-				</div> <!-- /container -->
-			
-			</div> <!-- /subnavbar-inner -->
-		
-		</div> <!-- /subnavbar -->
-		    
-		
-		    
+		        
 		<div class="main">
 			
 			<div class="main-inner">
@@ -131,35 +93,23 @@
 			      	<div class="span12">
 			      		          <!-- /widget --> 
 			          <div class="widget widget-nopad">
-			            <div class="widget-header"> <i class="shortcut-icon icon-upload"></i>
-			              <h3> Upload Task</h3>
-			            </div>
 			            <!-- /widget-header -->
-			            <div class="widget-content">
-			            	<div class = "upload-container">
-			            	  <div class = "content clearfix">	
-			            	  
-			            	  <form action="tes_decomposer" method="post" enctype="multipart/form-data" role="form" class="contactForm">
-				            	<div class="login-fields">							
-				            		<div class="field">
-										<label for="username">Upload</label>	
-										<input type="file" name="uploadJar" >
-									</div>
-															
-									<div class="field">
-										<label for="description">Description</label>
-										<textarea name="description" class="form-control" rows="5" style="resize : none;" placeholder="Add Description"></textarea>
-									</div> <!-- /description -->
-									
-									<div class="field">
-										<button type="submit" value="Upload" class="btn btn-primary btn-large">Submit</button>
-									</div>						
-								</div> <!-- /login-fields -->
-							 </form>
-							 
-							</div>
-						  </div>
-			            </div>
+				          <div class="widget">
+				            <div class="widget-header"> <i class="icon-bookmark"></i>
+				              <h3>Important Shortcuts</h3>
+				            </div>
+				            <!-- /widget-header -->
+				            <div class="widget-content"><p>
+				              <div class="shortcuts"> 
+				              	  <a href="uploadTask.jsp" class="shortcut"> <i class="shortcut-icon icon-upload"></i><span class="shortcut-label">Upload Task</span> </a>
+					              <a href="list_of_task" class="shortcut"> <i class="shortcut-icon icon-list-alt"></i> <span class="shortcut-label">List of Task</span> </a>
+					              <p>
+					              <a href="list" class="shortcut"> <i class="shortcut-icon icon-signal"></i> <span class="shortcut-label">Quality Control</span> </a>
+					              <a href="javascript:;" class="shortcut"> <i class="shortcut-icon icon-user"></i><span class="shortcut-label">Logout</span> </a>
+					              <!-- /shortcuts --> 
+				            </div>
+				            <!-- /widget-content --> 
+				          </div>
 			            <!-- /widget-content --> 
 			          </div>
 		
@@ -172,8 +122,7 @@
 			    
 			</div> <!-- /main-inner -->
 		    
-		</div> <!-- /main -->
-		    		    
+		</div> <!-- /main -->		    		    
 		<div class="footer">
 			
 			<div class="footer-inner">

@@ -18,10 +18,13 @@ public class TaskModel extends VoidVisitorAdapter<Void> {
 	public String path;
 	String description;
 	String taskName;
+	String reqId;
+	int numOfMicrotask;
+	int numOfTask;
 
 	public String insertTask() {
 		return String.format(
-				"INSERT INTO `task`(`path`, `file_name`, `requester_id`, `description`) VALUES ('%s', '%s','1234', '%s')",this.path,this.taskName,this.description);
+				"INSERT INTO `task`(`path`, `file_name`, `requester_id`, `description`,`num_of_worker`) VALUES ('%s', '%s','%s', '%s',4)",this.path,this.taskName,this.reqId,this.description);
 	}
 	
 
@@ -72,6 +75,20 @@ public class TaskModel extends VoidVisitorAdapter<Void> {
 			return microtasks;
 		}
 	}
+	
+	public TaskModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public TaskModel(int numOfMicrotask, int numOfTask, String taskName) {
+		super();
+		this.numOfMicrotask = numOfMicrotask;
+		this.numOfTask = numOfTask;
+		this.taskName = taskName;
+	}
+
 
 	public String getPath() {
 		return path;
@@ -95,6 +112,34 @@ public class TaskModel extends VoidVisitorAdapter<Void> {
 	
 	public String getTaskName() {
 		return taskName;
+	}
+	
+	public int getNumOfMicrotask() {
+		return numOfMicrotask;
+	}
+
+
+	public void setNumOfMicrotask(int numOfMicrotask) {
+		this.numOfMicrotask = numOfMicrotask;
+	}
+	
+
+	public int getNumOfTask() {
+		return numOfTask;
+	}
+
+
+	public void setNumOfTask(int numOfTask) {
+		this.numOfTask = numOfTask;
+	}
+
+
+	public void setReqId(String reqId) {
+		this.reqId = reqId;
+	}
+	
+	public String getReqId() {
+		return reqId;
 	}
 
 

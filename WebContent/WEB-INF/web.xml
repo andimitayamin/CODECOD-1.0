@@ -4,7 +4,6 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-
   <servlet>
     <display-name>Login</display-name>
     <servlet-name>UserLoginController</servlet-name>
@@ -14,7 +13,6 @@
     <servlet-name>UserLoginController</servlet-name>
     <url-pattern>/UserLogin</url-pattern>
   </servlet-mapping>
- 
   <servlet>
     <display-name>UploadTaskController</display-name>
     <servlet-name>UploadTaskController</servlet-name>
@@ -24,7 +22,6 @@
     <servlet-name>UploadTaskController</servlet-name>
     <url-pattern>/uploadFile</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>jarDemo</display-name>
     <servlet-name>jarDemo</servlet-name>
@@ -34,7 +31,6 @@
     <servlet-name>jarDemo</servlet-name>
     <url-pattern>/uploadJar</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>tes_decomposer</display-name>
     <servlet-name>tes_decomposer</servlet-name>
@@ -44,7 +40,6 @@
     <servlet-name>tes_decomposer</servlet-name>
     <url-pattern>/uploadZip</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>market</display-name>
     <servlet-name>CodeMarketController</servlet-name>
@@ -54,7 +49,6 @@
     <servlet-name>CodeMarketController</servlet-name>
     <url-pattern>/CodeMarket</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>microtask</display-name>
     <servlet-name>MicrotaskController</servlet-name>
@@ -64,7 +58,15 @@
     <servlet-name>MicrotaskController</servlet-name>
     <url-pattern>/microtask/*</url-pattern>
   </servlet-mapping>
- 
+  <servlet>
+    <display-name>OA</display-name>
+    <servlet-name>OutputAgreementController</servlet-name>
+    <servlet-class>com.codecod.controller.OutputAgreementController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OutputAgreementController</servlet-name>
+    <url-pattern>/result/*</url-pattern>
+  </servlet-mapping>
   <servlet>
     <display-name>microtask</display-name>
     <servlet-name>answeredMicrotask</servlet-name>
@@ -74,15 +76,59 @@
     <servlet-name>answeredMicrotask</servlet-name>
     <url-pattern>/answeredMicrotask/</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>QC</display-name>
     <servlet-name>MVcontroller</servlet-name>
-    <servlet-class>com.codecod.controller.MVcontroller</servlet-class>
+    <servlet-class>com.codecod.QualityControl.MVcontroller</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MVcontroller</servlet-name>
-    <url-pattern>/QC</url-pattern>
+    <url-pattern>/vote/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>list</display-name>
+    <servlet-name>ListOfMicrotasks</servlet-name>
+    <servlet-class>com.codecod.controller.ListOfMicrotasks</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListOfMicrotasks</servlet-name>
+    <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>list</display-name>
+    <servlet-name>ListPageController</servlet-name>
+    <servlet-class>com.codecod.requester.ListPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListPageController</servlet-name>
+    <url-pattern>/list_of_task</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>details</display-name>
+    <servlet-name>TaskPageDetail</servlet-name>
+    <servlet-class>com.codecod.requester.TaskPageDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskPageDetail</servlet-name>
+    <url-pattern>/task/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>TestJquery</display-name>
+    <servlet-name>tryJQuery</servlet-name>
+    <servlet-class>com.codecod.jQuery.tryJQuery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>tryJQuery</servlet-name>
+    <url-pattern>/saveIt</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <display-name>VotePage</display-name>
+    <servlet-name>vote</servlet-name>
+    <servlet-class>com.codecod.QualityControl.vote</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>vote</servlet-name>
+    <url-pattern>/voting</url-pattern>
+  </servlet-mapping>
 </web-app>
