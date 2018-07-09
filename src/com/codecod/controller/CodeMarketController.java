@@ -84,7 +84,13 @@ public class CodeMarketController extends HttpServlet {
 			ResultSet MV = connection.executeTake("SELECT DISTINCT * FROM `majority_vote` GROUP BY `microtaskID` ");
 			
 			while(MV.next()) {
-				listMV.add(new MajorityVotingModel(MV.getString("microtaskID"), MV.getString("smell_name"), MV.getInt("line"), MV.getInt("votes")));			
+				
+				MajorityVotingModel majVot = new MajorityVotingModel();
+				majVot.setMicrotaskID(MV.getString("microtaskID"));
+				
+				//listMV.add(new MajorityVotingModel(MV.getString("microtaskID"), MV.getString("smell_name"), MV.getInt("line"), MV.getInt("votes")));			
+			
+				listMV.add(majVot);
 			}
 			
 			request.setAttribute("microtaskList", listMicroTask);

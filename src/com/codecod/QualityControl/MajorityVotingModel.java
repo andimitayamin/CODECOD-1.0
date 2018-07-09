@@ -15,6 +15,11 @@ public class MajorityVotingModel {
 		this.voter = voter;
 	}
 	
+	public MajorityVotingModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String saveVote() {
 		return String.format("INSERT INTO `majority_vote`(`microtaskID`, `smell_name`, `line`, `votes`) VALUES ('%s','%s','%d','%d')",this.microtaskID, this.smell, this.line, this.voter);
 	}
