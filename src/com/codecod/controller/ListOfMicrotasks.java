@@ -45,18 +45,43 @@ public class ListOfMicrotasks extends HttpServlet {
 		}
 		
 		MySQLConnection connection = MySQLConnection.getInstance();	
-
-		List<MicrotaskModel> listMicroTask = new ArrayList<>();
+		List<MicrotaskModel> listMethodAsMicrotask = new ArrayList<>();
+		List<MicrotaskModel> listClassAsMicrotask = new ArrayList<>();
+		
 		try {  
-			ResultSet rs = connection.executeTake("SELECT `task`.*, `microtask`.* FROM `task` INNER JOIN `microtask` ON `task`.`path` = `microtask`.`path` WHERE `requester_id` = '"+id+"' ");
-			BlockStmt statement = new BlockStmt();
+			//1. semua method
+			ResultSet rs = connection.executeTake("SELECT `method_id`,`method_name`,`requester_id` FROM `microtask` INNER JOIN `task` USING (`path`) WHERE `method_id` IN (SELECT microtaskID FROM detected_smell) AND requester_id = '"+id+"'");
 
 			while (rs.next()) {
-				statement.addStatement(rs.getString("method_body"));
-				listMicroTask.add(new MicrotaskModel(rs.getString("method_id"),rs.getString("declaration"),rs.getString("method_name"), statement, rs.getString("path")));
+				
+				MicrotaskModel methodAsMtask = new MicrotaskModel();
+				methodAsMtask.setMicrotaskID(rs.getString("method_id"));
+				methodAsMtask.setMethodName(rs.getString("method_name"));
+				
+				listMethodAsMicrotask.add(methodAsMtask);
+				
+			}
+			
+			//2. semua class
+			ResultSet sets = connection.executeTake("SELECT `clazzID`,`path`,`requester_id` FROM `clazz_microtask` INNER JOIN `task` USING (`path`) WHERE `clazzID` IN (SELECT `microtaskID` FROM `detected_smell`) AND `requester_id` = '"+id+"'");
+			while (sets.next()) {
+				
+				MicrotaskModel classAsMtask = new MicrotaskModel();
+				String name = sets.getString("path");
+				String className = name.substring(name.lastIndexOf("//")+1);
+				
+				
+				
+				classAsMtask.setMicrotaskID(sets.getString("clazzID"));
+				classAsMtask.setMethodName(className);
+				
+				listClassAsMicrotask.add(classAsMtask);
+				
 			}
 
-			request.setAttribute("mtasks", listMicroTask);
+			request.setAttribute("methodTasks", listMethodAsMicrotask);
+			request.setAttribute("classTasks", listClassAsMicrotask);
+			
 			getServletContext().getRequestDispatcher("/listMicrotaskByRequester.jsp").forward(request, response);
 		} catch (SQLException e) {
 			response.sendRedirect("errorpage.html");

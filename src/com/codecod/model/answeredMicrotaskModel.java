@@ -5,13 +5,28 @@ public class answeredMicrotaskModel {
 	String name;
 	String line;
 	String workerID;
+	String answerID;
+
 	
-	public answeredMicrotaskModel(String microtaskID, String name, String line, String workerID) {
+	public answeredMicrotaskModel() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public answeredMicrotaskModel(String answerID,String microtaskID, String name, String line) {
+		super();
+		this.answerID = answerID;
 		this.microtaskID = microtaskID;
 		this.name = name;
 		this.line = line;
-		this.workerID = workerID;
+	}
+	
+	public String getAnswerID() {
+		return answerID;
+	}
+
+	public void setAnswerID(String answerID) {
+		this.answerID = answerID;
 	}
 	
 	public String getMicrotaskID() {
@@ -50,12 +65,16 @@ public class answeredMicrotaskModel {
 
 
 	public void setWorkerID(String workerID) {
-		this.workerID = workerID;
+		this.workerID = workerID; 
 	}
 
 	
 	public String save_answer() {
 		return String.format(
-				"INSERT INTO `detected_smell`(`microtaskID`, `name`, `line`, `workerID`) VALUES ('%s','%s','%s','%s')", this.microtaskID,this.name,this.line,this.workerID);
+				"INSERT INTO `detected_smell`(`answerID`, `microtaskID`, `smell_name`, `line`) VALUES ('%s','%s','%s','%s')",this.answerID, this.microtaskID,this.name,this.line);
+	}
+	
+	public String addWorkerHistory() {
+		return String.format("INSERT INTO `worker_history`(`workerID`, `answerID`) VALUES ('%s','%s')", this.workerID,this.answerID);
 	}
 }

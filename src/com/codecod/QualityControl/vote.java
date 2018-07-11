@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.codecod.connection.MySQLConnection;
 
@@ -42,6 +43,12 @@ public class vote extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 	      
+		HttpSession session = request.getSession(false);
+		String id = "";
+		
+		if(session!=null) {
+			id=(String)session.getAttribute("username");  
+		}
 		
 		 String smell = request.getParameter("smell");
 	     String line = request.getParameter("line");
@@ -49,16 +56,16 @@ public class vote extends HttpServlet {
 	     String type = request.getParameter("type");
 	     		
 		MySQLConnection connection = MySQLConnection.getInstance();	
-		
-		int value=1;
-	     if(type.equals("down"))
-	     {
-	    	 value = -1;
-	     }
 	     
+		int i = 1;
     	 try {
-				connection.executeStore(String.format("UPDATE `majority_vote` SET `votes`=`votes`+'%d' WHERE `microtaskID`='%s' AND `smell_name`='%s' AND `line`='%s'",value, microtaskID, smell, line));
-			} catch (SQLException e) {
+    		 if(type.equals("down")) {
+    			 i = -1;
+    		 }
+    		 
+    		 connection.executeStore(String.format("INSERT INTO `majority_vote`(`microtaskID`, `smell_name`, `line`, `voter_id`,`vote`) VALUES ('%s','%s','%s','%s',%d)", microtaskID, smell, line,id,i));
+    		 
+    	} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

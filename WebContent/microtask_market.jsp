@@ -173,9 +173,9 @@
 	              <ul class="news-items">
 	              <c:forEach var="taskMV" items="${listVote}">
 	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day"></span> <span class="news-item-month">For Vote</span> </div>
+	                  <div class="news-item-date"> <span class="news-item-day"></span> <span class="news-item-month">Vote for</span> </div>
 	                  <div class="news-item-detail">
-	                  	 <a href="/CODECOD-1.0/vote/<c:out value="${taskMV.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${taskMV.microtaskID}"/></a>
+	                  	 <a href="/CODECOD-1.0/vote/<c:out value="${taskMV.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${taskMV.microtaskName}"/></a>
 	                  </div>
 	                  
 	                </li>

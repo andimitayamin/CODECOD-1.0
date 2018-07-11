@@ -132,11 +132,27 @@
 	            </div>
 	            <div class="widget-content">
 	              <ul class="news-items">
-	              <c:forEach var="microtasks" items="${mtasks}">
+	              <c:forEach var="methods" items="${methodTasks}">
 	                <li>
-	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/result/<c:out value="${microtasks.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtasks.methodName}"/></a>
-	                  
-	                  
+	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/result/<c:out value="${methods.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${methods.methodName}"/></a>
+	                </li>
+	               </c:forEach>
+	              </ul>
+	            </div>
+	          </div>
+         	</div>
+         	
+         	<div class="span6">
+			<!-- /widget  -->
+	          <div class="widget widget-nopad">
+	            <div class="widget-header"> <i class="icon-list-alt"></i>
+	              <h3>Microtask List</h3>
+	            </div>
+	            <div class="widget-content">
+	              <ul class="news-items">
+	              <c:forEach var="classes" items="${classTasks}">
+	                <li>
+	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/result/<c:out value="${classes.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${classes.methodName}"/></a>
 	                </li>
 	               </c:forEach>
 	              </ul>

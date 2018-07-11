@@ -1,13 +1,31 @@
 package com.codecod.QualityControl;
 
-public class MajorityVotingModel {
+public class MajorityVotingModel extends OutputAgreementModel{
 	String microtaskID;
+	String microtaskName;
 	String smell;
 	int line;
-	int voter;
+	int vote_up;
+	int vote_down;
+	String voter;
 	
+	public int getVote_up() {
+		return vote_up;
+	}
+
+	public void setVote_up(int vote_up) {
+		this.vote_up = vote_up;
+	}
+
+	public int getVote_down() {
+		return vote_down;
+	}
+
+	public void setVote_down(int vote_down) {
+		this.vote_down = vote_down;
+	}	
 	
-	public MajorityVotingModel(String microtaskID, String smell, int line, int voter) {
+	public MajorityVotingModel(String microtaskID, String smell, int line, String voter) {
 		super();
 		this.microtaskID = microtaskID;
 		this.smell = smell;
@@ -21,7 +39,7 @@ public class MajorityVotingModel {
 	}
 
 	public String saveVote() {
-		return String.format("INSERT INTO `majority_vote`(`microtaskID`, `smell_name`, `line`, `votes`) VALUES ('%s','%s','%d','%d')",this.microtaskID, this.smell, this.line, this.voter);
+		return String.format("INSERT INTO `majority_vote`(`microtaskID`, `smell_name`, `line`, `voter_id`) VALUES ('%s','%s','%d','%d')",this.microtaskID, this.smell, this.line, this.voter);
 	}
 	
 	public String getMicrotaskID() {
@@ -30,6 +48,15 @@ public class MajorityVotingModel {
 	public void setMicrotaskID(String microtaskID) {
 		this.microtaskID = microtaskID;
 	}
+	
+	public String getMicrotaskName() {
+		return microtaskName;
+	}
+
+	public void setMicrotaskName(String microtaskName) {
+		this.microtaskName = microtaskName;
+	}
+
 	public String getSmell() {
 		return smell;
 	}
@@ -42,10 +69,10 @@ public class MajorityVotingModel {
 	public void setLine(int line) {
 		this.line = line;
 	}
-	public int getVoter() {
+	public String getVoter() {
 		return voter;
 	}
-	public void setVoter(int voter) {
+	public void setVoter(String voter) {
 		this.voter = voter;
 	}
 	

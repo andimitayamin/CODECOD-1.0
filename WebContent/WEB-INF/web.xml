@@ -13,6 +13,17 @@
     <servlet-name>UserLoginController</servlet-name>
     <url-pattern>/UserLogin</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <display-name>Logout</display-name>
+    <servlet-name>UserLogoutController</servlet-name>
+    <servlet-class>com.codecod.controller.UserLogoutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserLogoutController</servlet-name>
+    <url-pattern>/UserLogout</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <display-name>UploadTaskController</display-name>
     <servlet-name>UploadTaskController</servlet-name>
@@ -121,7 +132,6 @@
     <servlet-name>tryJQuery</servlet-name>
     <url-pattern>/saveIt</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>VotePage</display-name>
     <servlet-name>vote</servlet-name>

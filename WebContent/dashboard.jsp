@@ -105,7 +105,7 @@
 					              <a href="list_of_task" class="shortcut"> <i class="shortcut-icon icon-list-alt"></i> <span class="shortcut-label">List of Task</span> </a>
 					              <p>
 					              <a href="list" class="shortcut"> <i class="shortcut-icon icon-signal"></i> <span class="shortcut-label">Quality Control</span> </a>
-					              <a href="javascript:;" class="shortcut"> <i class="shortcut-icon icon-user"></i><span class="shortcut-label">Logout</span> </a>
+					              <a href="/UserLogout" class="shortcut"> <i class="shortcut-icon icon-user"></i><span class="shortcut-label">Logout</span> </a>
 					              <!-- /shortcuts --> 
 				            </div>
 				            <!-- /widget-content --> 

@@ -127,7 +127,7 @@
 					               		<tr>
 					               			<td><c:out value = "${OA.smell}" /></td>
 					               			<td><c:out value = "${OA.line}" /></td>
-					               			<td><c:out value = "${OA.voter}" /></td>
+					               			<td><c:out value = "${OA.agreement}" /></td>
 					               		</tr>
 					               	 </c:forEach>
 					               	</tbody>
@@ -154,7 +154,8 @@
 					               		<tr>
 					               			<td><c:out value = "${MV.smell}" /></td>
 					               			<td><c:out value = "${MV.line}" /></td>
-					               			<td><c:out value = "${MV.voter}" /></td>
+					               			<td><c:out value = "${MV.vote_up}" /></td>
+					               			<td><c:out value = "${MV.vote_down}" /></td>
 					               		</tr>
 					               	 </c:forEach>
 					               	</tbody>

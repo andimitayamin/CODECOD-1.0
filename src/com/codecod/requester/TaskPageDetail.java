@@ -47,6 +47,7 @@ public class TaskPageDetail extends HttpServlet {
 		
 
 		List<MicrotaskModel> methodsDetails = new ArrayList<>();
+		List<MicrotaskModel> classDetails = new ArrayList<>();
 		
 		MySQLConnection connection = MySQLConnection.getInstance();
 		
@@ -55,25 +56,46 @@ public class TaskPageDetail extends HttpServlet {
 			while(url.next()) {
 				
 				String urls = url.getString("path").replace("\\", "\\\\");
-				ResultSet methods = connection.executeTake("SELECT DISTINCT `method_name`,`method_id`, COUNT(DISTINCT `workerId`)AS `workers` FROM `microtask` "
-																	+ "LEFT JOIN `detected_smell` ON `microtask`.`method_id` = `detected_smell`.`microtaskID`"
-																	+ " WHERE `path` = '"+urls+"' GROUP BY `method_id`");
+								
+				//Find class as microtask
+				ResultSet classes = connection.executeTake("SELECT * FROM clazz_microtask INNER JOIN detected_smell ON detected_smell.microtaskID = clazz_microtask.clazzID WHERE path ='"+urls+"'");
+				
+				while(classes.next()) {
+					
+					MicrotaskModel classDetail = new MicrotaskModel();
+					classDetail.setPathFile(url.getString("path"));
+					
+					String name = classes.getString("path");
+					String className= name.substring(name.lastIndexOf("\\")+1);
+					
+					classDetail.setMethodName(className);
+					classDetail.setMicrotaskID(classes.getString("clazzID"));
+					classDetail.setNumOfWorker(classes.getInt("vote"));
+					
+					classDetails.add(classDetail);
+
+				}	
+				
+				//Find method as microtask
+				ResultSet methods = connection.executeTake("SELECT * FROM microtask INNER JOIN detected_smell ON detected_smell.microtaskID = microtask.method_id WHERE path ='"+urls+"'");
+				
 				while(methods.next()) {
 					
-					MicrotaskModel methodDetails = new MicrotaskModel();
-					methodDetails.setPathFile(url.getString("path"));
+					MicrotaskModel methodDetail = new MicrotaskModel();
 					
-					methodDetails.setMethodName(methods.getString("method_name"));
-					methodDetails.setMicrotaskID(methods.getString("method_id"));
-					methodDetails.setNumOfWorker(methods.getInt("workers"));
+					methodDetail.setPathFile(url.getString("path"));
+					methodDetail.setMethodName(methods.getString("method_name"));
+					methodDetail.setMicrotaskID(methods.getString("method_id"));
+					methodDetail.setNumOfWorker(methods.getInt("vote"));
 					
-					methodsDetails.add(methodDetails);
-					System.out.println(methodsDetails.size());
-				}				
-				
+					methodsDetails.add(methodDetail);
+
+				}
+				 
 			}
 			   
-			request.setAttribute("details", methodsDetails);
+			request.setAttribute("class_details", classDetails);
+			request.setAttribute("method_details", methodsDetails);
 			
 			getServletContext().getRequestDispatcher("/task.jsp").forward(request, response);
 			

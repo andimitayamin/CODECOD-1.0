@@ -34,10 +34,10 @@
 			success : function(status){
 				
 					if(type == "up"){
-						 $("#ThumbsUp").attr("disabled", true);
+						$("ThumbsUp").hide();
 					}
 					else{
-						$("#ThumbsDown").attr("disabled", true);
+						$("ThumbsDown").show();
 					}
 			}
 		});
@@ -123,7 +123,8 @@
 						<div class="widget">
 							<div class="widget-content">
 								<h1>${microtask.methodName}</h1>							
-									<pre class="line-numbers"><code class="language-java">${microtask.declaration}${microtask.methodBody}</code></pre>
+									<pre class="line-numbers"><code class="language-java">${microtask.declaration}${microtask.methodBody}${microtask.classBody}</code></pre>
+									
 							</div>
 						</div>
 					</div>
@@ -146,12 +147,12 @@
 								<tbody>
 									<c:forEach var="vote" items="${majvot}">
 									<tr>
-										<td><c:out value = "${vote.smell}" /></td>
+										<td><c:out value = "${vote.name}" /></td>
 										<td><c:out value = "${vote.line}" /></td>
-										<td><a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.smell}" />','<c:out value = "${vote.line}" />','up');">
+										<td><a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','up');">
 											<i class="icon-large icon-thumbs-up" id="ThumbsUp" value=1 ></i>
 											</a></td>
-										<td><a href="#" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.smell}" />','<c:out value = "${vote.line}" />','down');">
+										<td><a href="#" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','down');">
 											<i class="icon-large icon-thumbs-down" id="ThumbsDown" value=-1></i>
 											</a></td>
 <%-- 											<td><button id="ThumbsUp" value = "up" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.smell}" />','<c:out value = "${vote.line}" />','up');"></button></td> --%>

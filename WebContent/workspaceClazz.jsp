@@ -232,6 +232,8 @@
 	    	
 	    	var form = document.getElementById("selectSmell");
 	    	form.submit();
+	    	
+	    	alert("Thank you for your answer");
 	    }
 
 	</script> 

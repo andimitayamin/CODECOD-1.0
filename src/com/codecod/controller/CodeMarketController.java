@@ -51,9 +51,10 @@ public class CodeMarketController extends HttpServlet {
 		List<MicrotaskModel> listMicroTask = new ArrayList<>();
 		List <MajorityVotingModel> listMV = new ArrayList<>();
 		
-		try {
+		try { 
 			//show microtask (type:class)
-			ResultSet rs = connection.executeTake("select `clazzID`,`task`.`path`,`file_name` from `clazz_microtask` INNER JOIN `task` ON `clazz_microtask`.`path` = `task`.`path` GROUP BY `path` ");
+			ResultSet rs = connection.executeTake("select `clazzID`,`task`.`path`,`file_name` from `clazz_microtask` INNER JOIN `task` ON `clazz_microtask`.`path` = `task`.`path` "
+							+ "WHERE `clazzID` NOT IN (SELECT `microtaskID` FROM `detected_smell` INNER JOIN `worker_history` USING (`answerID`) WHERE `workerID` = '"+id+"' ) ");
 
 			while (rs.next()) {
 				String path = rs.getString("path");
@@ -69,7 +70,7 @@ public class CodeMarketController extends HttpServlet {
 			}
 			
 //			Show microtask (type:single method)			
-			ResultSet RSmethod = connection.executeTake("SELECT * FROM microtask WHERE method_id NOT IN (SELECT microtaskID FROM detected_smell WHERE workerID = '"+id+"')");
+			ResultSet RSmethod = connection.executeTake("SELECT `method_id`,`method_name` FROM `microtask` WHERE `method_id` NOT IN (SELECT `microtaskID` FROM `detected_smell` INNER JOIN `worker_history` USING (`answerID`) WHERE `workerID` = '"+id+"' )");
 				
 			while(RSmethod.next()) {
 				MicrotaskModel microtask = new MicrotaskModel();
@@ -81,23 +82,37 @@ public class CodeMarketController extends HttpServlet {
 			}
 				
 			//show MVlist
-			ResultSet MV = connection.executeTake("SELECT DISTINCT * FROM `majority_vote` GROUP BY `microtaskID` ");
+			ResultSet MV = connection.executeTake("SELECT DISTINCT `microtaskID` FROM `detected_smell` WHERE `vote` <=4 AND `answerID` NOT IN (SELECT answerID FROM `worker_history` WHERE `workerID` = '"+id+"') AND `microtaskID` NOT IN (SELECT `microtaskID` FROM `majority_vote` WHERE `voter_id`='"+id+"') ");
 			
+			String mtName = "";
 			while(MV.next()) {
 				
-				MajorityVotingModel majVot = new MajorityVotingModel();
-				majVot.setMicrotaskID(MV.getString("microtaskID"));
-				
-				//listMV.add(new MajorityVotingModel(MV.getString("microtaskID"), MV.getString("smell_name"), MV.getInt("line"), MV.getInt("votes")));			
+				if(MV.getString("microtaskID").contains("clazz")) {
+					ResultSet MVmicrotaskName = connection.executeTake(String.format("SELECT `path` FROM `clazz_microtask` WHERE `clazzID` = '%s'", MV.getString("microtaskID")));
+					if(MVmicrotaskName.next()) {
+						mtName = MVmicrotaskName.getString("path").substring((MVmicrotaskName.getString("path")).lastIndexOf("\\")+1);
+					}
+				}
+				else {
+					ResultSet MVmicrotaskName = connection.executeTake(String.format("SELECT `method_name` FROM `microtask` WHERE `method_id` = '%s'",MV.getString("microtaskID")));
+					if(MVmicrotaskName.next()) {
+						mtName = MVmicrotaskName.getString("method_name");
+					}
+				}
 			
-				listMV.add(majVot);
+					MajorityVotingModel majVot = new MajorityVotingModel();
+					majVot.setMicrotaskID(MV.getString("microtaskID"));
+					majVot.setMicrotaskName(mtName);
+									
+					listMV.add(majVot);
+
 			}
 			
 			request.setAttribute("microtaskList", listMicroTask);
 			request.setAttribute("classList", clazzList);
 			request.setAttribute("listVote", listMV);
 			
-			
+			 
 
 			
 			getServletContext().getRequestDispatcher("/microtask_market.jsp").forward(request, response);

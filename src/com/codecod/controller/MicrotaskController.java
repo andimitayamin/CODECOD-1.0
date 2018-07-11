@@ -52,7 +52,6 @@ public class MicrotaskController extends HttpServlet {
 					String fileName = path.substring(path.lastIndexOf("\\")+1);
 					microTask.setMethodName(fileName);
 					
-//					statement.addStatement(rs.getString("clazz_body"));
 					microTask.setClassBody(rs.getString("clazz_body"));
 
 					microTask.setMicrotaskID(microtaskID);
