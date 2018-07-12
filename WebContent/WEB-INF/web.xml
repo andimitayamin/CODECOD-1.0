@@ -13,8 +13,7 @@
     <servlet-name>UserLoginController</servlet-name>
     <url-pattern>/UserLogin</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <display-name>Logout</display-name>
     <servlet-name>UserLogoutController</servlet-name>
     <servlet-class>com.codecod.controller.UserLogoutController</servlet-class>
@@ -23,7 +22,6 @@
     <servlet-name>UserLogoutController</servlet-name>
     <url-pattern>/UserLogout</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>UploadTaskController</display-name>
     <servlet-name>UploadTaskController</servlet-name>
@@ -140,5 +138,14 @@
   <servlet-mapping>
     <servlet-name>vote</servlet-name>
     <url-pattern>/voting</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>Resume</display-name>
+    <servlet-name>WorkerResume</servlet-name>
+    <servlet-class>com.codecod.controller.WorkerResume</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WorkerResume</servlet-name>
+    <url-pattern>/resume</url-pattern>
   </servlet-mapping>
 </web-app>

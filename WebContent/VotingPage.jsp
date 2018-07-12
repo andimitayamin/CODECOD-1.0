@@ -19,27 +19,26 @@
 <link href="../css/font-awesome.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 
+
 <link rel="stylesheet" href="../highlight/styles/default.css">
 	<script type="text/javascript" src="../js/prism.js"></script>
 	<script  type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 	<script  type="text/javascript" src="../js/bootstrap.js"></script>
 	<script type="text/javascript">
 
-	function vote(id,smell,line,type){
+	function vote(id,smell,line,type,ans_id){
 		var vote_status;
+		var ans_id = ans_id;
+		
 		$.ajax({		
 			type : "POST",
 			url : "../voting",
 			data : "id="+id+"&smell="+smell+"&line="+line+"&type="+type,
-			success : function(status){
+			success : function(){
 				
-					if(type == "up"){
-						$("ThumbsUp").hide();
-					}
-					else{
-						$("ThumbsDown").show();
-					}
-			}
+				$("#votes-"+ans_id).hide(500);
+				console.log(ans_id);
+							}
 		});
 	}
 	</script>
@@ -132,39 +131,54 @@
 
 				  <div class="span4">
 					<div class="widget">
-					  <div class="widget-content">
-						<div class="span3">
-							<h3>Code Smell Detected </h3>
-							<table class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Smell's Name</th>
-										<th>Position (line)</th>
-										<th>Vote Up</th>
-										<th>Vote Down</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="vote" items="${majvot}">
-									<tr>
-										<td><c:out value = "${vote.name}" /></td>
-										<td><c:out value = "${vote.line}" /></td>
-										<td><a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','up');">
-											<i class="icon-large icon-thumbs-up" id="ThumbsUp" value=1 ></i>
-											</a></td>
-										<td><a href="#" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','down');">
-											<i class="icon-large icon-thumbs-down" id="ThumbsDown" value=-1></i>
-											</a></td>
-<%-- 											<td><button id="ThumbsUp" value = "up" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.smell}" />','<c:out value = "${vote.line}" />','up');"></button></td> --%>
-<%-- 											<td><button id="ThumbsDown" value = "down" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.smell}" />','<c:out value = "${vote.line}" />','down');"></button></td> --%>
-									</tr>
-									</c:forEach>
-								</tbody>				
-							</table>
-						</div>						
-					  </div>								
+						<div class="widget-content">
+						 <h3> Answer from another worker</h3>
+						  <ul class="messages_layout">
+						   <c:forEach var="vote" items="${majvot}"> 
+						   <div id="votes-<c:out value = "${vote.answerID}" />">
+				                <li class="from_user left"> <a href="#" class="avatar"><img src="../img/User-icon.png"/></a>
+				                  <div class="message_wrap"> <span class="arrow"></span>
+				                  
+				                  <div class="info"> 
+				                  		<a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','up','<c:out value = "${vote.answerID}" />');">
+			 											<i class="icon-large icon-thumbs-up" id="ThumbsUp" value=1 ></i>
+			 							</a> |
+			 							<a href="#" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','down','<c:out value = "${vote.answerID}" />');"> 
+														<i class="icon-large icon-thumbs-down" id="ThumbsDown" value=-1></i> 
+										</a>
+			 					 </div>
+				                    <div class="text"> <c:out value = "${vote.name}" /> at line : <c:out value = "${vote.line}" /> </div>
+				                  </div>
+				                </li>
+			                </div>
+			               </c:forEach>
+			                </ul>
+<!-- 					 <div class="widget-header"> <i class="icon-list-alt"></i><h3> Answer from another worker</h3></div> -->
+<!-- 					  	 <div class="widget-content"> -->
+<!-- 						  	<ul class="news-item"> -->
+<%-- 								<c:forEach var="vote" items="${majvot}"> --%>
+<!-- 								<li> -->
+<%-- 									<div id="votes-<c:out value = "${vote.microtaskID}" />"> --%>
+<!-- 										<div  class="news-item-date"> -->
+<%-- 											<span class="news-item-day"><a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','up');"> --%>
+<!-- 		 											<i class="icon-large icon-thumbs-up" id="ThumbsUp" value=1 ></i> -->
+<!-- 		 											</a> </span> -->
+<%-- 		 									<span class="news-item-month"> <a href="#" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','down');">  --%>
+<!-- 													<i class="icon-large icon-thumbs-down" id="ThumbsDown" value=-1></i>  -->
+<!-- 													</a></span> -->
+<!-- 										</div> -->
+<!-- 										<div class="news-item-detali"> -->
+<%-- 											<p class="news-item-preview"><c:out value = "${vote.name}" /> at line : <c:out value = "${vote.line}" /> </p> --%>
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								 </li> -->
+<%-- 								</c:forEach> --%>
+<!-- 							</ul> -->
+<!-- 						 </div>														 -->
 					</div>
+				   </div>
 				  </div>
+				  
 				</div>
 			</div>
 			<!-- /container -->

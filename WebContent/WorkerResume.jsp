@@ -91,13 +91,13 @@
 		<div class="container">
 
 			<ul class="mainnav">				
-				<li class="active">
-					<a href="Market.html">
+				<li>
+					<a href="CodeMarket">
 						<i class="icon-list-alt"></i>
 						<span>Market</span>
 					</a>    				
 				</li>
-				<li>
+				<li class="active">
 					<a href="resume">
 						<i class="icon-list-alt"></i>
 						<span>Resume</span>
@@ -121,76 +121,27 @@
 	    <div class="container">
 	    	
 	     <div class="row">
-	      	
-	      	<div class="span4">
-			<!-- /widget MICROTASK CLASS -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Single Class</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="classes" items="${classList}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <h3><a href="/CODECOD-1.0/microtask/<c:out value="${classes.clazzID}"/>" class="news-item-title" target="_blank"><c:out value = "${classes.clazzName}"/></a></h3>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${classes.path}" /> </p> --%>
-							<p class="news-item-preview"> <a href="microtask/<c:out value = "${classes.taskName}" />" target ="_blank"> download full file</a> </p>	
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-         	
-         	
-         	<div class="span4">
-			<!-- /widget MICROTASK : METHOD -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Single Method</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="microtask" items="${microtaskList}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/microtask/<c:out value="${microtask.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtask.methodName}"/></a>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${microtask.pathFile}" /> </p> --%>
-							
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-         	
-         	<div class="span4">
-			<!-- /widget MAJORITY VOTE -->
-	          <div class="widget widget-nopad">
-	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3> Majority Vote</h3>
-	            </div>
-	            <div class="widget-content">
-	              <ul class="news-items">
-	              <c:forEach var="taskMV" items="${listVote}">
-	                <li>
-	                  <div class="news-item-date"> <span class="news-item-day"></span> <span class="news-item-month">Vote for</span> </div>
-	                  <div class="news-item-detail">
-	                  	 <a href="/CODECOD-1.0/vote/<c:out value="${taskMV.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${taskMV.microtaskName}"/></a>
-	                  </div>
-	                  
-	                </li>
-	               </c:forEach>
-	              </ul>
-	            </div>
-	          </div>
-         	</div>
-			
+	     	<div class="span4">
+			<!-- /widget MICROTASK  -->
+			          <div class="widget widget-nopad">
+			            <div class="widget-header"> <i class="icon-list-alt"></i>
+			              <h3> Microtask List</h3>
+			            </div>
+			            <div class="widget-content">
+			              <ul class="news-items">
+			              <c:forEach var="mtask" items="${microtasks}">
+			                <li>
+			                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
+			                  <div class="news-item-detail"> <h3><a href="/CODECOD-1.0/resume/<c:out value="${mtask.answerID}"/>" class="news-item-title" target="_blank"><c:out value = "${mtask.name}"/></a></h3>
+<%-- 									<p class="news-item-preview"> <a href="microtask/<c:out value = "${classes.taskName}" />" target ="_blank"> download full file</a> </p>	 --%>
+			                  </div>
+			                  
+			                </li>
+			               </c:forEach>
+			              </ul>
+			            </div>
+			          </div>
+         			</div>		
 			
          </div>      
 	      	

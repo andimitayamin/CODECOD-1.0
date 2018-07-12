@@ -6,8 +6,8 @@ public class answeredMicrotaskModel {
 	String line;
 	String workerID;
 	String answerID;
+	String microtaskName;
 
-	
 	public answeredMicrotaskModel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -19,6 +19,14 @@ public class answeredMicrotaskModel {
 		this.microtaskID = microtaskID;
 		this.name = name;
 		this.line = line;
+	}
+	
+	public String getMicrotaskName() {
+		return microtaskName;
+	}
+
+	public void setMicrotaskName(String microtaskName) {
+		this.microtaskName = microtaskName;
 	}
 	
 	public String getAnswerID() {
