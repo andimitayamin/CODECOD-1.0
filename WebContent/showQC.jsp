@@ -77,7 +77,7 @@
 			<div class="container">
 				<ul class="mainnav">
 				<li>
-					<a href="dashboard.jsp">
+					<a href="../dashboard.jsp">
 						<i class="icon-dashboard"></i>
 						<span>Dashboard</span>
 					</a>	    				
@@ -110,7 +110,7 @@
 		<div class="main-inner">
 			<div class="container">
 				<div class="row">
-					<div class="span6">
+					<div class="span4">
 						<div class="widget">
 							<div class="widget-content">
 								<h1>Output Agreement</h1>							
@@ -137,7 +137,7 @@
 					</div>
 
 
-				  <div class="span6">
+				  <div class="span4">
 					<div class="widget">
 					  <div class="widget-content">
 								<h3>Majority Vote </h3>
@@ -146,7 +146,8 @@
 					               		<tr>
 					               			<th> Smell </th>
 					               			<th> Line </th>
-					               			<th> Vote </th>
+					               			<th> Vote Up <i class="icon-large icon-thumbs-up" id="ThumbsUp"></i></th>
+					               			<th> Vote Down <i class="icon-large icon-thumbs-down" id="ThumbsUp" ></i></th>
 					               		</tr>
 					               	</thead>
 					               	<tbody>
@@ -163,7 +164,28 @@
 					  </div>						
 					</div>
 				  </div>
-				</div>
+				
+				<div class="span4">
+					<div class="widget">
+					  <div class="widget-header"> <i class="icon-comment"></i>
+             			  <h3> Suggested Refactoring</h3>
+            		   </div>
+						<div class="widget-content">
+						  <ul class="messages_layout">
+						   <c:forEach var="suggestRefactor" items="${suggested}"> 
+				                <li class="from_user left"> <a href="#" class="avatar"><img src="../img/message_avatar2.png"/></a>
+				                  <div class="message_wrap"> <span class="arrow"></span>			                  
+				                  	<div class="info"> Anonymous	 </div>
+				                    <div class="text"> <c:out value = "${suggestRefactor.suggestedRefactoring}" /></div>
+				                  </div>
+				                </li>
+			               </c:forEach>
+			                </ul>
+					</div>
+				   </div>
+				  </div>
+				<row>
+				<!-- row -->
 			</div>
 			<!-- /container -->
 		</div>

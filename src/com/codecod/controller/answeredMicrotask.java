@@ -50,6 +50,7 @@ public class answeredMicrotask extends HttpServlet {
 		String smell = request.getParameter("hiddenSmellIni");
 		String line = request.getParameter("hiddenSmellLine"); 
 		String microtaskID = request.getParameter("microtaskID");
+		String suggestedRefactoring = request.getParameter("suggestedRefactoring");
 		 
 		HttpSession session = request.getSession(false);
 		String id = null; 
@@ -90,6 +91,7 @@ public class answeredMicrotask extends HttpServlet {
 				  
 				saveNewRecord.setAnswerID(answer_ID);
 				saveNewRecord.setWorkerID(id);
+				saveNewRecord.setSuggestedRefactoring(suggestedRefactoring);
 				connection.executeStore(saveNewRecord.addWorkerHistory());
 				
 			

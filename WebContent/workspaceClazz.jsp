@@ -126,13 +126,15 @@
 																
 								<form action = "../answeredMicrotask"  method="post" id="selectSmell">
 												
-									<div id="addLargeClass">Line of Large Class	</div>
-									<div id="addPrimitiveObs">Line of Primitive Obsession </div>
-									<div id="addLazyClass">Line of Lazy Class	</div>
-									<div id="addSpeculativeGen">Line of Speculative Generality	</div>
-									<div id="addTempField">Line of Temporary Field	</div>
-									<div id="addBadComment">Line of Bad Comment	</div>
-									<div id="addSwitchStatement">Line of switch statement area		</div>												
+									<div id="addLargeClass">Large Class on line :	</div>
+									<div id="addPrimitiveObs">Primitive Obsession on line :</div>
+									<div id="addLazyClass">Lazy Class on line :	</div>
+									<div id="addSpeculativeGen">Speculative Generality on line :	</div>
+									<div id="addTempField">Temporary Field on line :	</div>
+									<div id="addBadComment">Bad Comment on line :	</div>
+									<div id="addSwitchStatement">Switch statement on line :	</div>	
+									<p>
+									<div><textarea id ="suggestedRef" name="suggestedRefactoring" class="form-control" column=20 rows=10 style="resize : none;" placeholder="Give your suggested refactoring"></textarea></div>																						
 									<input type = "hidden" name="methodId" value="${microtaskClazz.methodName}">							
 									
 										<input type = "hidden" name="hiddenSmellIni" id="IDhiddenSmell"/>
@@ -190,7 +192,7 @@
 		function addLargeClass(){
 			fileId++;
 			var longMethod = '<input type="hidden" name="largeClass" value="Large Class" id="smell-'+fileId+'" />';
-			var lineLongMethod = '<input type="text" name="lineLargeClass" id="line-'+fileId+'" />'
+			var lineLongMethod = '<input type="text" name="lineLargeClass" id="line-'+fileId+'" size="4"/>'
 	        addElement('addLargeClass', 'p', 'file-' + fileId, longMethod);
 			addElement('addLargeClass','p','part-'+fileId, lineLongMethod);
 		}
@@ -229,6 +231,8 @@
 	    	
 	    	var LineOfDetectedSmell = document.getElementById("IDhiddenSmellLine");
 	    	LineOfDetectedSmell.value = lines;
+	    	
+	    	var suggestedRefactoring = document.getElementById("suggestedRef").value;
 	    	
 	    	var form = document.getElementById("selectSmell");
 	    	form.submit();

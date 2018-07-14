@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codecod.QualityControl.MajorityVotingModel;
 import com.codecod.connection.MySQLConnection;
+import com.codecod.model.answeredMicrotaskModel;
 
 /**
  * Servlet implementation class OutputAgreementController
@@ -38,8 +39,9 @@ public class OutputAgreementController extends HttpServlet {
 		
 		String action = request.getPathInfo();
 		String microtaskID = action.substring(1, action.length());
-		List<MajorityVotingModel> OAlist = new ArrayList();
-		List<MajorityVotingModel> MVlist = new ArrayList();
+		List<MajorityVotingModel> OAlist = new ArrayList<>();
+		List<MajorityVotingModel> MVlist = new ArrayList<>();
+		List<answeredMicrotaskModel> suggest = new ArrayList<>();
 		
 		MySQLConnection connection = MySQLConnection.getInstance();
 		
@@ -70,9 +72,19 @@ public class OutputAgreementController extends HttpServlet {
 				MVlist.add(majVot);
 			}
 			
+			ResultSet suggestRef = connection.executeTake(String.format("SELECT suggested_refactoring FROM `worker_history` WHERE answerID IN "
+									+ "(SELECT answerID FROM detected_smell WHERE microtaskID = '%s')", microtaskID));
+			while(suggestRef.next()) {
+				answeredMicrotaskModel suggestRefactoring = new answeredMicrotaskModel();
+				suggestRefactoring.setSuggestedRefactoring(suggestRef.getString("suggested_refactoring"));
+				
+				suggest.add(suggestRefactoring);
+			}
+			
 			//disini utk tampilkan hasil QC
 			request.setAttribute("OutAgree", OAlist);
 			request.setAttribute("MajVot", MVlist);
+			request.setAttribute("suggested",suggest);
 			
 			getServletContext().getRequestDispatcher("/showQC.jsp").forward(request, response);
 			
@@ -80,6 +92,7 @@ public class OutputAgreementController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**

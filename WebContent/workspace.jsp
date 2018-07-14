@@ -123,10 +123,12 @@
 																
 								<form action = "../answeredMicrotask"  method="post" id="selectSmell">
 												
-									<div id="addLongMethod">Line of long method	long method area		</div>
-									<div id="addLongParameter">Line of long parameter	long parameter area		</div>
-									<div id="addBadComment">Line of bad comment	Bad comment area		</div>
-									<div id="addSwitchStatement">Line of switch statement	switch statement area		</div>												
+									<div id="addLongMethod">Smell long method on line : </div>
+									<div id="addLongParameter">Smell long parameter on line :		</div>
+									<div id="addBadComment">Smell bad comment on line: </div>
+									<div id="addSwitchStatement">Smell switch statement on line :</div>
+									<p>
+									<div><textarea id ="suggestedRef" name="suggestedRefactoring" class="form-control" column=20 rows=10 style="resize : none;" placeholder="Give your suggested refactoring"></textarea></div>												
 									<input type = "hidden" name="methodId" value="${microtask.methodName}">							
 									
 										<input type = "hidden" name="hiddenSmellIni" id="IDhiddenSmell"/>
@@ -184,7 +186,7 @@
 		function addLongMethod(){
 			fileId++;
 			var longMethod = '<input type="hidden" name="longMethod" value="Long Method" id="smell-'+fileId+'" />';
-			var lineLongMethod = '<input type="text" name="lineLongMethod" id="line-'+fileId+'" />'
+			var lineLongMethod = '<input type="text" name="lineLongMethod" id="line-'+fileId+'" size="4" />'
 	        addElement('addLongMethod', 'p', 'file-' + fileId, longMethod);
 			addElement('addLongMethod','p','part-'+fileId, lineLongMethod);
 		}
@@ -192,7 +194,7 @@
 		function addLongParameter(){
 			fileId++;
 			var longParameter = '<input type="hidden" name="longParameter" value="Long Parameter" id="smell-'+fileId+'" />';
-			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" />'
+			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" size="4" />'
 	        addElement('addLongParameter', 'p', 'file-' + fileId, longParameter);
 			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
 		}
@@ -217,6 +219,8 @@
 	    	for(var j=1; j<=fileId; j++){
 	    		lines.push(document.getElementById('line-'+[j]).value);
 	    	}
+	    	
+	    	var suggestedRefactoring = document.getElementById("suggestedRef").value;
 	    	
 	    	var detectedSmell = document.getElementById("IDhiddenSmell");
 	    	detectedSmell.value = smells.join(",");

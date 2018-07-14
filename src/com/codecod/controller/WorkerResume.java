@@ -47,7 +47,7 @@ public class WorkerResume extends HttpServlet {
 		MySQLConnection connection = MySQLConnection.getInstance();
 		
 		try {
-			ResultSet microtaskList = connection.executeTake("SELECT * FROM `worker_history` INNER JOIN detected_smell USING (answerID) WHERE workerID ='"+id+"'");
+			ResultSet microtaskList = connection.executeTake("SELECT * FROM `worker_history` INNER JOIN detected_smell USING (answerID) WHERE workerID ='"+id+"' GROUP BY `microtaskID`");
 
 			while(microtaskList.next()) {
 				answeredMicrotaskModel microtask = new answeredMicrotaskModel();
@@ -63,12 +63,13 @@ public class WorkerResume extends HttpServlet {
 				}else {
 					ResultSet microtaskName = connection.executeTake("SELECT method_name FROM microtask where method_id= '"+microtaskList.getString("microtaskID")+"'");
 					if(microtaskName.next()) {					
-						microtask.setMicrotaskName(microtaskName.getString("method_name"));
+						microtask.setMicrotaskName(microtaskName.getString("method_name")+"()");
 					}
-				}
+				} 
 				
+				microtask.setMicrotaskID(microtaskList.getString("microtaskID"));
 				microtask.setAnswerID(microtaskList.getString("answerID"));
-				microtask.setName(microtaskList.getString("smell_name")+"()");
+				microtask.setName(microtaskList.getString("smell_name"));
 				microtask.setLine(microtaskList.getString("line"));
 						
 				mtaskList.add(microtask);			

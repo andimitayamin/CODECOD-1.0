@@ -7,10 +7,19 @@ public class answeredMicrotaskModel {
 	String workerID;
 	String answerID;
 	String microtaskName;
+	String suggestedRefactoring;
 
 	public answeredMicrotaskModel() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getSuggestedRefactoring() {
+		return suggestedRefactoring;
+	}
+
+	public void setSuggestedRefactoring(String suggestedRefactoring) {
+		this.suggestedRefactoring = suggestedRefactoring;
 	}
 
 	public answeredMicrotaskModel(String answerID,String microtaskID, String name, String line) {
@@ -83,6 +92,6 @@ public class answeredMicrotaskModel {
 	}
 	
 	public String addWorkerHistory() {
-		return String.format("INSERT INTO `worker_history`(`workerID`, `answerID`) VALUES ('%s','%s')", this.workerID,this.answerID);
+		return String.format("INSERT INTO `worker_history`(`workerID`, `answerID`, `suggested_refactoring`) VALUES ('%s','%s','%s')", this.workerID,this.answerID,this.suggestedRefactoring);
 	}
 }

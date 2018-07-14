@@ -20,6 +20,24 @@
 	<!--[if lt IE 9]>
 	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	    <![endif]-->
+	    
+	<script type="text/javascript" src="js/prism.js"></script>
+	<script  type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script  type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+		function resume(microtaskID){
+			
+			$.ajax({		
+				type : "GET",
+				url : "details",
+				data : "microtaskID="+microtaskID,
+				success : function(data){
+					alert("success");
+					console.log(data);
+				}
+			});
+		}
+	</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -132,8 +150,7 @@
 			              <c:forEach var="mtask" items="${microtasks}">
 			                <li>
 			                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-			                  <div class="news-item-detail"> <h3><a href="/CODECOD-1.0/resume/<c:out value="${mtask.answerID}"/>" class="news-item-title" target="_blank"><c:out value = "${mtask.name}"/></a></h3>
-<%-- 									<p class="news-item-preview"> <a href="microtask/<c:out value = "${classes.taskName}" />" target ="_blank"> download full file</a> </p>	 --%>
+			                  <div class="news-item-detail"> <h3><a href="#" onClick="resume('<c:out value="${mtask.microtaskID}"/>');" class="news-item-title"><c:out value = "${mtask.microtaskName}"/></a></h3>
 			                  </div>
 			                  
 			                </li>
