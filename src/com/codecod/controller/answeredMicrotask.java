@@ -52,6 +52,11 @@ public class answeredMicrotask extends HttpServlet {
 		String microtaskID = request.getParameter("microtaskID");
 		String suggestedRefactoring = request.getParameter("suggestedRefactoring");
 		 
+		System.out.println(smell);
+		System.out.println(line);
+		System.out.println(microtaskID);
+		System.out.println(suggestedRefactoring);
+		
 		HttpSession session = request.getSession(false);
 		String id = null; 
 		if(session!=null) {
@@ -93,9 +98,6 @@ public class answeredMicrotask extends HttpServlet {
 				saveNewRecord.setWorkerID(id);
 				saveNewRecord.setSuggestedRefactoring(suggestedRefactoring);
 				connection.executeStore(saveNewRecord.addWorkerHistory());
-				
-			
-				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

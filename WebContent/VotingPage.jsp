@@ -136,7 +136,7 @@
 						  <ul class="messages_layout">
 						   <c:forEach var="vote" items="${majvot}"> 
 						   <div id="votes-<c:out value = "${vote.answerID}" />">
-				                <li class="from_user left"> <a href="#" class="avatar"><img src="../img/User-icon.png"/></a>
+				                <li class="from_user left"> <a href="#" class="avatar"><img src="../img/message_avatar2.png"/></a>
 				                  <div class="message_wrap"> <span class="arrow"></span>
 				                  
 				                  <div class="info"> 

@@ -68,7 +68,7 @@ public class ListOfMicrotasks extends HttpServlet {
 				
 				MicrotaskModel classAsMtask = new MicrotaskModel();
 				String name = sets.getString("path");
-				String className = name.substring(name.lastIndexOf("//")+1);
+				String className = name.substring(name.lastIndexOf("\\")+1);
 				
 				
 				

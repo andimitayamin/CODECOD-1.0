@@ -128,7 +128,7 @@
 			<!-- /widget  -->
 	          <div class="widget widget-nopad">
 	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3>Microtask List</h3>
+	              <h3>Microtask as Single Method</h3>
 	            </div>
 	            <div class="widget-content">
 	              <ul class="news-items">
@@ -146,7 +146,7 @@
 			<!-- /widget  -->
 	          <div class="widget widget-nopad">
 	            <div class="widget-header"> <i class="icon-list-alt"></i>
-	              <h3>Microtask List</h3>
+	              <h3>Microtask as Single Class</h3>
 	            </div>
 	            <div class="widget-content">
 	              <ul class="news-items">

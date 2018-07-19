@@ -12,6 +12,7 @@ public class MicrotaskModel {
 	BlockStmt methodBody;
 	String decompositionType;
 	int numOfWorker;
+	String status;
 	
 	String classBody;
 	List<TypeOfSmell> smells;
@@ -99,6 +100,14 @@ public class MicrotaskModel {
 
 	public void setClassBody(String classBody) {
 		this.classBody = classBody;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status= status;
 	}
 
 	public String insertMicrotask() {

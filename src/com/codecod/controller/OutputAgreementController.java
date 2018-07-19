@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codecod.QualityControl.MajorityVotingModel;
 import com.codecod.connection.MySQLConnection;
+import com.codecod.model.MicrotaskModel;
 import com.codecod.model.answeredMicrotaskModel;
 
 /**
@@ -39,6 +40,9 @@ public class OutputAgreementController extends HttpServlet {
 		
 		String action = request.getPathInfo();
 		String microtaskID = action.substring(1, action.length());
+		
+		MicrotaskModel microtask = new MicrotaskModel();
+		
 		List<MajorityVotingModel> OAlist = new ArrayList<>();
 		List<MajorityVotingModel> MVlist = new ArrayList<>();
 		List<answeredMicrotaskModel> suggest = new ArrayList<>();
@@ -46,8 +50,27 @@ public class OutputAgreementController extends HttpServlet {
 		MySQLConnection connection = MySQLConnection.getInstance();
 		
 		try {
+			String microtaskType;
+			String idType;
+			
+			if(microtaskID.startsWith("clazz")) {
+				microtaskType = "clazz_microtask";
+				idType = "clazzID";
+			}else {
+				microtaskType = "microtask";
+				idType = "method_id";
+			}
+			
+			ResultSet getState = connection.executeTake(String.format("select status from `%s` where `%s` = '%s' ", microtaskType,idType,microtaskID));
+			if(getState.next()) {
+				microtask.setStatus(getState.getString("status"));
+				microtask.setMicrotaskID(microtaskID);
+			}	
+			
+			
 			ResultSet OA = connection.executeTake(String.format("select * from detected_smell where microtaskID = '%s'", microtaskID));
 			while(OA.next()) {
+								
 				MajorityVotingModel outAgree = new MajorityVotingModel();
 				outAgree.setSmell(OA.getString("smell_name"));
 				outAgree.setLine(OA.getInt("line"));
@@ -77,7 +100,6 @@ public class OutputAgreementController extends HttpServlet {
 			while(suggestRef.next()) {
 				answeredMicrotaskModel suggestRefactoring = new answeredMicrotaskModel();
 				suggestRefactoring.setSuggestedRefactoring(suggestRef.getString("suggested_refactoring"));
-				
 				suggest.add(suggestRefactoring);
 			}
 			
@@ -85,6 +107,7 @@ public class OutputAgreementController extends HttpServlet {
 			request.setAttribute("OutAgree", OAlist);
 			request.setAttribute("MajVot", MVlist);
 			request.setAttribute("suggested",suggest);
+			request.setAttribute("state",microtask);
 			
 			getServletContext().getRequestDispatcher("/showQC.jsp").forward(request, response);
 			

@@ -148,7 +148,7 @@
     <servlet-name>WorkerResume</servlet-name>
     <url-pattern>/resume</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <display-name>ResumeDetail</display-name>
     <servlet-name>WorkerResumeDetail</servlet-name>
     <servlet-class>com.codecod.controller.WorkerResumeDetail</servlet-class>
@@ -156,5 +156,15 @@
   <servlet-mapping>
     <servlet-name>WorkerResumeDetail</servlet-name>
     <url-pattern>/details</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <display-name>changeState</display-name>
+    <servlet-name>ChangeMicrotaskState</servlet-name>
+    <servlet-class>com.codecod.controller.ChangeMicrotaskState</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeMicrotaskState</servlet-name>
+    <url-pattern>/changeStatus</url-pattern>
   </servlet-mapping>
 </web-app>

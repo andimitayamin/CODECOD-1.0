@@ -111,11 +111,10 @@
 			<div class="container">
 				<div class="row">
 				
-					<div class="span6">
+					<div class="span8">
 						<div class="widget">
 							<div class="widget-content">
-								<h1>Task Details</h1>	
-								<h3> Type : Classes </h3>						
+								<h3>Task Details (Type: Classes)</h3>						
 											<table class="table table-striped table-bordered">
 								               	<thead>
 								               		<tr>
@@ -138,15 +137,14 @@
 						</div>
 					</div>
 					
-					<div class="span6">
+					<div class="span4">
 						<div class="widget">
 							<div class="widget-content">
-								<h1>Task Details</h1>	
-								<h3> Type : Method </h3>						
+								<h3>Task Details (Type: Method)</h3>						
 											<table class="table table-striped table-bordered">
 								               	<thead>
 								               		<tr>
-								               		 <th> Path File </th>
+<!-- 								               		 <th> Path File </th> -->
 					    		           			 <th> Microtask(Class) </th>
 					            		   			 <th> Worker </th>
 					               					</tr>
@@ -154,7 +152,7 @@
 					               				<tbody>
 					               				<c:forEach var="mdetail" items="${method_details}">
 					               					<tr>
-					               					 <td><c:out value = "${mdetail.pathFile}"/></td>
+<%-- 					               					 <td><c:out value = "${mdetail.pathFile}"/></td> --%>
 					               					 <td><a href= "/CODECOD-1.0/result/<c:out value = "${mdetail.microtaskID}" />" ><c:out value = "${mdetail.methodName}" /></a></td>
 					               					 <td><c:out value = "${mdetail.numOfWorker}" /></td>
 					               					</tr>

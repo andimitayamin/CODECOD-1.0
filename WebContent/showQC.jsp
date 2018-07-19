@@ -96,6 +96,15 @@
 						<span>Quality Control</span> 
 					</a> 				
 				</li>
+				
+				<li class="active">
+					<a href="#">
+						<i class="icon-star"></i>
+						<span>Status : <c:out value = "${state.status}" /></span> 
+						
+					</a>
+				
+				</li>
 				</ul>
 			</div>
 			<!-- /container -->
@@ -108,12 +117,23 @@
 
 	<div class="main">
 		<div class="main-inner">
+<!-- 			<div class="span3"> -->
+<!-- 				<form method = "post" action="changeState"> -->
+<%-- 					<input type="hidden" name="id" id="id" value=" <c:out value = "${state.microtaskID}" />"> --%>
+<%-- 					<input type="hidden" name="state" id="state" value=" <c:out value = "${state.status}" />"> --%>
+<!-- 					<button type="submit" class="button btn btn-success"> Close Microtask </button> -->
+					
+<!-- 				</form> -->
+<!-- 			</div> -->
 			<div class="container">
 				<div class="row">
 					<div class="span4">
+					
 						<div class="widget">
+							 <div class="widget-header"> <i class="icon-check"></i>
+             			  		<h3>Output Agreement </h3>
+            		  		 </div>
 							<div class="widget-content">
-								<h1>Output Agreement</h1>							
 									<table class="table table-striped table-bordered">
 					               	<thead>
 					               		<tr>
@@ -139,8 +159,10 @@
 
 				  <div class="span4">
 					<div class="widget">
+					  <div class="widget-header"> <i class="icon-thumbs-up-alt"></i>
+             			  <h3>Majority Vote </h3>
+            		   </div>
 					  <div class="widget-content">
-								<h3>Majority Vote </h3>
 					               <table class="table table-striped table-bordered">
 					               	<thead>
 					               		<tr>
@@ -167,7 +189,7 @@
 				
 				<div class="span4">
 					<div class="widget">
-					  <div class="widget-header"> <i class="icon-comment"></i>
+					  <div class="widget-header"> <i class="icon-comment-alt"></i>
              			  <h3> Suggested Refactoring</h3>
             		   </div>
 						<div class="widget-content">
@@ -184,7 +206,6 @@
 					</div>
 				   </div>
 				  </div>
-				<row>
 				<!-- row -->
 			</div>
 			<!-- /container -->
@@ -192,6 +213,7 @@
 		<!-- /main-inner -->
 	</div>
 	<!-- /main -->
+</div>
 
 	<div class="footer">
 

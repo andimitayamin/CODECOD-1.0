@@ -82,7 +82,7 @@ public class CodeMarketController extends HttpServlet {
 			}
 				
 			//show MVlist
-			ResultSet MV = connection.executeTake("SELECT DISTINCT `microtaskID` FROM `detected_smell` WHERE `vote` <=4 AND `answerID` NOT IN (SELECT answerID FROM `worker_history` WHERE `workerID` = '"+id+"') AND `microtaskID` NOT IN (SELECT `microtaskID` FROM `majority_vote` WHERE `voter_id`='"+id+"') ");
+			ResultSet MV = connection.executeTake("SELECT DISTINCT `microtaskID` FROM `detected_smell` WHERE `vote` <4 AND `answerID` NOT IN (SELECT answerID FROM `worker_history` WHERE `workerID` = '"+id+"') AND `microtaskID` NOT IN (SELECT `microtaskID` FROM `majority_vote` WHERE `voter_id`='"+id+"') ");
 			
 			String mtName = "";
 			while(MV.next()) {
