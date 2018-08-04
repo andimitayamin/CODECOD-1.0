@@ -197,13 +197,54 @@
 			addElement('addLargeClass','p','part-'+fileId, lineLongMethod);
 		}
 		
-// 		function addLongParameter(){
-// 			fileId++;
-// 			var longParameter = '<input type="hidden" name="longParameter" value="Long Parameter" id="smell-'+fileId+'" />';
-// 			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" />'
-// 	        addElement('addLongParameter', 'p', 'file-' + fileId, longParameter);
-// 			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
-// 		}
+		function addPrimitiveObs(){
+			fileId++;
+			var primitiveObs = '<input type="hidden" name="primitiveObs" value="Primitive Obsession" id="smell-'+fileId+'" />';
+			var linePrimitiveObs = '<input type="text" name="linePrimitiveObs" id="line-'+fileId+'" />'
+	        addElement('addPrimitiveObs', 'p', 'file-' + fileId, primitiveObs);
+			addElement('addPrimitiveObs','p','part-'+fileId, linePrimitiveObs);
+		}
+		
+		function addLazyClass(){
+			fileId++;
+			var lazyClass = '<input type="hidden" name="lazyClass" value="Lazy Class" id="smell-'+fileId+'" />';
+			var lineLazyClass = '<input type="text" name="lineLazyClass" id="line-'+fileId+'" />'
+	        addElement('addLazyClass', 'p', 'file-' + fileId, lazyClass);
+			addElement('addLazyClass','p','part-'+fileId, lineLazyClass);
+		}
+		
+		function addSpeculativeGen(){
+			fileId++;
+			var speculativeGen = '<input type="hidden" name="speculativeGen" value="Speculative Generality" id="smell-'+fileId+'" />';
+			var lineSpeculativeGen = '<input type="text" name="lineSpeculativeGen" id="line-'+fileId+'" />'
+	        addElement('addSpeculativeGen', 'p', 'file-' + fileId, speculativeGen);
+			addElement('addSpeculativeGen','p','part-'+fileId, lineSpeculativeGen);
+		}
+		
+		function addTempField(){
+			fileId++;
+			var tempField = '<input type="hidden" name="tempField" value="Temporary Field" id="smell-'+fileId+'" />';
+			var lineTempField = '<input type="text" name="lineTempField" id="line-'+fileId+'" />'
+	        addElement('addTempField', 'p', 'file-' + fileId, tempField);
+			addElement('addTempField','p','part-'+fileId, lineTempField);
+		}
+
+		function addBadComment(){
+			fileId++;
+			var badComment = '<input type="hidden" name="badComment" value="Bad Comment" id="smell-'+fileId+'" />';
+			var lineBadComment = '<input type="text" name="lineBadComment" id="line-'+fileId+'" size="4" />'
+	        addElement('addBadComment', 'p', 'file-' + fileId, badComment);
+			addElement('addBadComment','p','part-'+fileId, lineBadComment);
+		}
+		
+		function addSwitch(){
+			fileId++;
+			var switchStatement = '<input type="hidden" name="switchStatement" value="Switch Statement" id="smell-'+fileId+'" />';
+			var lineSwitchStatement= '<input type="text" name="lineSwitchStatement" id="line-'+fileId+'" size="4" />'
+	        addElement('addSwitchStatement', 'p', 'file-' + fileId, switchStatement);
+			addElement('addSwitchStatement','p','part-'+fileId, lineSwitchStatement);
+		}
+		
 		
 	    function addElement(parentId, elementTag, elementId, html) {
 	        // Adds an element to the document

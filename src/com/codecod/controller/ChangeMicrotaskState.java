@@ -45,7 +45,8 @@ public class ChangeMicrotaskState extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		String currentState = request.getParameter("status");
-		String microtaskID = request.getParameter("id");
+		String microtaskID = request.getParameter("microtaskID");
+		
 				
 		String nextState;
 		if(currentState.equals("OPEN")) {
@@ -70,7 +71,7 @@ public class ChangeMicrotaskState extends HttpServlet {
 			
 			connection.executeStore(String.format("UPDATE `%s` SET `status`='%s' WHERE `%s` = '%s'", microtaskType, nextState, idType, microtaskID ));
 			
-			response.sendRedirect("../result/"+microtaskID);
+			response.sendRedirect("result/"+microtaskID);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

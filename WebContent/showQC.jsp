@@ -20,6 +20,25 @@
 <link href="../css/style.css" rel="stylesheet">
 <link href="css/pages/dashboard.css" rel="stylesheet">
 <link rel="stylesheet" href="../highlight/styles/default.css">
+
+<script type="text/javascript" src="js/prism.js"></script>
+<script  type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script  type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+		function closedMicrotask(status,microtaskID){
+			
+			$.ajax({		
+				type : "POST",
+				url : "../changeStatus",
+				data : "microtaskID="+microtaskID+"&status="+status,
+				success : function(data){
+					alert("success");
+					console.log(data);
+				}
+			});
+		}
+	</script>
+	
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 
 <title>Insert title here</title>
@@ -98,12 +117,10 @@
 				</li>
 				
 				<li class="active">
-					<a href="#">
-						<i class="icon-star"></i>
-						<span>Status : <c:out value = "${state.status}" /></span> 
-						
+					<a href="<c:out value="${state.microtaskID}"/>" onClick="closedMicrotask('<c:out value="${state.status}"/>','<c:out value="${state.microtaskID}"/>');" class="news-item-title">
+					<i class="icon-star"></i>
+						<span>Change Status : <c:out value = "${state.status}" /></span> 
 					</a>
-				
 				</li>
 				</ul>
 			</div>
@@ -117,14 +134,6 @@
 
 	<div class="main">
 		<div class="main-inner">
-<!-- 			<div class="span3"> -->
-<!-- 				<form method = "post" action="changeState"> -->
-<%-- 					<input type="hidden" name="id" id="id" value=" <c:out value = "${state.microtaskID}" />"> --%>
-<%-- 					<input type="hidden" name="state" id="state" value=" <c:out value = "${state.status}" />"> --%>
-<!-- 					<button type="submit" class="button btn btn-success"> Close Microtask </button> -->
-					
-<!-- 				</form> -->
-<!-- 			</div> -->
 			<div class="container">
 				<div class="row">
 					<div class="span4">

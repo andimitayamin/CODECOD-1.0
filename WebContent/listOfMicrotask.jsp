@@ -160,23 +160,6 @@
     
 </div> <!-- /main -->
     
-
-    
-
-<div class="extra">
-
-	<div class="extra-inner">
-
-		<div class="container">
-			CODECOD 1.0
-		</div> <!-- /container -->
-
-	</div> <!-- /extra-inner -->
-
-</div> <!-- /extra -->
-
-
-    
     
 <div class="footer">
 	

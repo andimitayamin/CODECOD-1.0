@@ -140,14 +140,16 @@
 				                  <div class="message_wrap"> <span class="arrow"></span>
 				                  
 				                  <div class="info"> 
-				                  		<a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','up','<c:out value = "${vote.answerID}" />');">
+				                   <c:out value = "${vote.name}" /> at line : <c:out value = "${vote.line}" /> 
+			 					 </div>
+				                    <div class="text">
+				                    	<a href="#"  OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','up','<c:out value = "${vote.answerID}" />');">
 			 											<i class="icon-large icon-thumbs-up" id="ThumbsUp" value=1 ></i>
 			 							</a> |
 			 							<a href="#" OnClick="vote('<c:out value = "${vote.microtaskID}" />','<c:out value = "${vote.name}" />','<c:out value = "${vote.line}" />','down','<c:out value = "${vote.answerID}" />');"> 
 														<i class="icon-large icon-thumbs-down" id="ThumbsDown" value=-1></i> 
 										</a>
-			 					 </div>
-				                    <div class="text"> <c:out value = "${vote.name}" /> at line : <c:out value = "${vote.line}" /> </div>
+				                    </div>
 				                  </div>
 				                </li>
 			                </div>

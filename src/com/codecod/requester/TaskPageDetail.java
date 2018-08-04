@@ -58,7 +58,7 @@ public class TaskPageDetail extends HttpServlet {
 				String urls = url.getString("path").replace("\\", "\\\\");
 								
 				//Find class as microtask
-				ResultSet classes = connection.executeTake("SELECT * FROM clazz_microtask INNER JOIN detected_smell ON detected_smell.microtaskID = clazz_microtask.clazzID WHERE path ='"+urls+"'");
+				ResultSet classes = connection.executeTake("SELECT * FROM clazz_microtask INNER JOIN `task` USING (`path`) WHERE `path` ='"+urls+"' AND `requester_id`='"+id+"'");
 				
 				while(classes.next()) {
 					
@@ -70,15 +70,15 @@ public class TaskPageDetail extends HttpServlet {
 					
 					classDetail.setMethodName(className);
 					classDetail.setMicrotaskID(classes.getString("clazzID"));
-					classDetail.setNumOfWorker(classes.getInt("vote"));
+//					classDetail.setNumOfWorker(classes.getInt("vote"));
 					
 					classDetails.add(classDetail);
 
 				}	
 				
 				//Find method as microtask
-				ResultSet methods = connection.executeTake("SELECT * FROM microtask INNER JOIN detected_smell ON detected_smell.microtaskID = microtask.method_id WHERE path ='"+urls+"'");
-				
+//				ResultSet methods = connection.executeTake("SELECT * FROM microtask INNER JOIN detected_smell ON detected_smell.microtaskID = microtask.method_id WHERE path ='"+urls+"'");
+				ResultSet methods = connection.executeTake("SELECT `method_name`,`method_id` FROM microtask INNER JOIN `task` USING (`path`) WHERE `path` ='"+urls+"' AND `requester_id`='"+id+"'");
 				while(methods.next()) {
 					
 					MicrotaskModel methodDetail = new MicrotaskModel();
@@ -86,7 +86,7 @@ public class TaskPageDetail extends HttpServlet {
 					methodDetail.setPathFile(url.getString("path"));
 					methodDetail.setMethodName(methods.getString("method_name"));
 					methodDetail.setMicrotaskID(methods.getString("method_id"));
-					methodDetail.setNumOfWorker(methods.getInt("vote"));
+//					methodDetail.setNumOfWorker(methods.getInt("vote"));
 					
 					methodsDetails.add(methodDetail);
 

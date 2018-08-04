@@ -51,11 +51,6 @@ public class answeredMicrotask extends HttpServlet {
 		String line = request.getParameter("hiddenSmellLine"); 
 		String microtaskID = request.getParameter("microtaskID");
 		String suggestedRefactoring = request.getParameter("suggestedRefactoring");
-		 
-		System.out.println(smell);
-		System.out.println(line);
-		System.out.println(microtaskID);
-		System.out.println(suggestedRefactoring);
 		
 		HttpSession session = request.getSession(false);
 		String id = null; 

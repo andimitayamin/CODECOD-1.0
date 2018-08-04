@@ -1,0 +1,18 @@
+-By Methods :  Total 11 method
+Bad comment : method getAge, method print Person
+Long method : compareByAge
+Long parameter : Constructor
+Switch statement :
+
+
+-By Class :
+Temporary field  : int age, int ageComparison
+Speculative Generality : method compareAge
+Bad comment : every class variable
+Large class :printPerson, variable age & ageComparison
+Duplicate Code : printAgeComparison & printPerson
+
+
+
+
+

@@ -199,6 +199,22 @@
 			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
 		}
 		
+		function addBadComment(){
+			fileId++;
+			var badComment = '<input type="hidden" name="badComment" value="Bad Comment" id="smell-'+fileId+'" />';
+			var lineBadComment = '<input type="text" name="lineBadComment" id="line-'+fileId+'" size="4" />'
+	        addElement('addBadComment', 'p', 'file-' + fileId, badComment);
+			addElement('addBadComment','p','part-'+fileId, lineBadComment);
+		}
+		
+		function addSwitch(){
+			fileId++;
+			var switchStatement = '<input type="hidden" name="switchStatement" value="Switch Statement" id="smell-'+fileId+'" />';
+			var lineSwitchStatement= '<input type="text" name="lineSwitchStatement" id="line-'+fileId+'" size="4" />'
+	        addElement('addSwitchStatement', 'p', 'file-' + fileId, switchStatement);
+			addElement('addSwitchStatement','p','part-'+fileId, lineSwitchStatement);
+		}
+		
 	    function addElement(parentId, elementTag, elementId, html) {
 	        // Adds an element to the document
 	        var p = document.getElementById(parentId);

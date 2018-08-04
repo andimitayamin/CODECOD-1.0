@@ -156,10 +156,11 @@
 	              <ul class="news-items">
 	              <c:forEach var="microtask" items="${microtaskList}">
 	                <li>
+	                  
 	                  <div class="news-item-date"> <span class="news-item-day">50</span> <span class="news-item-month">pts</span> </div>
-	                  <div class="news-item-detail"> <a href="/CODECOD-1.0/microtask/<c:out value="${microtask.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtask.methodName}"/></a>
-<%-- 	                    <p class="news-item-preview"> <c:out value = "${microtask.pathFile}" /> </p> --%>
-							
+	                  <div class="news-item-detail"> 
+	                  		<p class="news-item-preview"> <c:out value = "${microtask.pathFile}" /> </p>
+	                  		<a href="/CODECOD-1.0/microtask/<c:out value="${microtask.microtaskID}"/>" class="news-item-title" target="_blank"><c:out value = "${microtask.methodName}"/></a>
 	                  </div>
 	                  
 	                </li>

@@ -77,7 +77,7 @@
 			<div class="container">
 				<ul class="mainnav">
 				<li>
-					<a href="dashboard.jsp">
+					<a href="../dashboard.jsp">
 						<i class="icon-dashboard"></i>
 						<span>Dashboard</span>
 					</a>	    				
@@ -120,7 +120,6 @@
 								               		<tr>
 								               		 <th> Path File </th>
 					    		           			 <th> Microtask(Class) </th>
-					            		   			 <th> Worker </th>
 					               					</tr>
 					               				</thead>
 					               				<tbody>
@@ -128,7 +127,6 @@
 					               					<tr>
 					               					 <td><c:out value = "${cdetail.pathFile}"/></td>
 					               					 <td><a href= "/CODECOD-1.0/result/<c:out value = "${cdetail.microtaskID}" />" ><c:out value = "${cdetail.methodName}" /></a></td>
-					               					 <td><c:out value = "${cdetail.numOfWorker}" /></td>
 					               					</tr>
 					               				</c:forEach>
 					               				</tbody>	
@@ -141,24 +139,21 @@
 						<div class="widget">
 							<div class="widget-content">
 								<h3>Task Details (Type: Method)</h3>						
-											<table class="table table-striped table-bordered">
-								               	<thead>
-								               		<tr>
-<!-- 								               		 <th> Path File </th> -->
-					    		           			 <th> Microtask(Class) </th>
-					            		   			 <th> Worker </th>
-					               					</tr>
-					               				</thead>
-					               				<tbody>
+									<table class="table table-striped table-bordered">
+								          <thead>
+								          	<tr>
+<!-- 								        	<th> Path File </th> -->
+					    		           		<th> Microtask(Class) </th>
+					               				</tr>
+					               			</thead>
+					               			<tbody>
 					               				<c:forEach var="mdetail" items="${method_details}">
 					               					<tr>
-<%-- 					               					 <td><c:out value = "${mdetail.pathFile}"/></td> --%>
 					               					 <td><a href= "/CODECOD-1.0/result/<c:out value = "${mdetail.microtaskID}" />" ><c:out value = "${mdetail.methodName}" /></a></td>
-					               					 <td><c:out value = "${mdetail.numOfWorker}" /></td>
 					               					</tr>
 					               				</c:forEach>
-					               				</tbody>	
-					              			</table>
+					               			</tbody>	
+					              	</table>
 							</div>
 						</div>
 					</div>

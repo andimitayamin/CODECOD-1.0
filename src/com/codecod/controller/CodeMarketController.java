@@ -54,7 +54,7 @@ public class CodeMarketController extends HttpServlet {
 		try { 
 			//show microtask (type:class)
 			ResultSet rs = connection.executeTake("select `clazzID`,`task`.`path`,`file_name` from `clazz_microtask` INNER JOIN `task` ON `clazz_microtask`.`path` = `task`.`path` "
-							+ "WHERE `clazzID` NOT IN (SELECT `microtaskID` FROM `detected_smell` INNER JOIN `worker_history` USING (`answerID`) WHERE `workerID` = '"+id+"' ) ");
+							+ "WHERE `clazzID` NOT IN (SELECT `microtaskID` FROM `detected_smell` INNER JOIN `worker_history` USING (`answerID`) WHERE `workerID` = '"+id+"')  AND `status`='OPEN' GROUP BY `task`.`path` ");
 
 			while (rs.next()) {
 				String path = rs.getString("path");
@@ -70,13 +70,19 @@ public class CodeMarketController extends HttpServlet {
 			}
 			
 //			Show microtask (type:single method)			
-			ResultSet RSmethod = connection.executeTake("SELECT `method_id`,`method_name` FROM `microtask` WHERE `method_id` NOT IN (SELECT `microtaskID` FROM `detected_smell` INNER JOIN `worker_history` USING (`answerID`) WHERE `workerID` = '"+id+"' )");
+			ResultSet RSmethod = connection.executeTake("SELECT `method_id`,`method_name`,`file_name` FROM `microtask` "
+														+ "INNER JOIN `task` USING (`path`)"
+														+ " WHERE `method_id` NOT IN "
+														+ "(SELECT `microtaskID` FROM `detected_smell`"
+														+ " INNER JOIN `worker_history` USING (`answerID`) WHERE `workerID` = '"+id+"') "
+														+ "AND `status`='OPEN' ORDER BY `file_name` ");
 				
 			while(RSmethod.next()) {
 				MicrotaskModel microtask = new MicrotaskModel();
 				
 				microtask.setMicrotaskID(RSmethod.getString("method_id"));
 				microtask.setMethodName(RSmethod.getString("method_name"));
+				microtask.setPathFile(RSmethod.getString("file_name"));
 				
 				listMicroTask.add(microtask);	
 			}

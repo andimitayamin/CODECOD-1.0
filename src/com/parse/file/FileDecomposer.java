@@ -14,7 +14,7 @@ public class FileDecomposer {
 	public static final String DIR = "D:\\Java EE Workspace\\Uploaded\\ZIP";
 	
 	public List<String> extractZip (String zipPath) {
-		byte[] buffer = new byte[2084];
+		byte[] buffer = new byte[2084*2084];
 		List<String> path = new ArrayList<String>();
 		
 		try {
@@ -24,6 +24,7 @@ public class FileDecomposer {
 		while(enu.hasMoreElements()) {
 			
 			ZipEntry zipEntry = (ZipEntry)enu.nextElement();
+			
 			
 			//Create the directory
 			File files = new File(String.format("%s\\Extract\\%s",DIR,zipEntry.getName()));
@@ -44,6 +45,7 @@ public class FileDecomposer {
 			FileOutputStream outputFile = new FileOutputStream(files);
 			int len;
 			while ((len = is.read(buffer))>0) {
+				System.out.println(len);
 					outputFile.write(buffer, 0, len);
 					path.add(new String(files.getAbsolutePath()));
 			}

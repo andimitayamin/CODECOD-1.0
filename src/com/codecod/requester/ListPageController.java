@@ -43,17 +43,19 @@ public class ListPageController extends HttpServlet {
 		if(session!=null) {
 			id = (String)session.getAttribute("username");
 		}
-		 TaskModel task = new TaskModel();
+
 		List <TaskModel> listOfTask = new ArrayList<>();
 		MySQLConnection connection = MySQLConnection.getInstance();
 		try {
 			
-			ResultSet getTaskInfo = connection.executeTake(String.format("SELECT DISTINCT `file_name` AS `file_name`, COUNT(DISTINCT `path`) as `paths` FROM `task` WHERE `requester_id` = '%s' ",id));
+			ResultSet getTaskInfo = connection.executeTake(String.format("SELECT DISTINCT `file_name` AS `file_name`, COUNT(DISTINCT `path`) as `paths` FROM `task` WHERE `requester_id` = '%s' group by `file_name` ",id));
 			while(getTaskInfo.next()) {
+				TaskModel task = new TaskModel();
 				String taskName = getTaskInfo.getString("file_name").substring(0, (getTaskInfo.getString("file_name").length()-4));
 				task.setTaskName(taskName);
 				task.setNumOfTask(getTaskInfo.getInt("paths"));
 				listOfTask.add(task);
+
 			}
 			
 			request.setAttribute("list", listOfTask);
