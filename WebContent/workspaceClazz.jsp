@@ -113,10 +113,12 @@
 								<h3>Code Smell Detected </h3>
 								<p>	<h3><button class="btn btn-info" onclick="addLargeClass();"><i  class="icon-plus"></i> </button>  Large Class </h3>
 								<p>	<h3><button class="btn btn-info" onclick="addPrimitiveObs();"><i  class="icon-plus"></i> </button>  Primitive Obsession </h3>
-								<p>	<h3><button class="btn btn-info" onclick="addLazyClass();"><i  class="icon-plus"></i> </button>  Lazy Class</h3>	
+								<p>	<h3><button class="btn btn-info" onclick="addLazyClass();"><i  class="icon-plus"></i> </button>  Lazy Class</h3>
+								<p>	<h3><button class="btn btn-info" onclick="addDataClass();"><i  class="icon-plus"></i> </button>  Data Class</h3>	
 								<p>	<h3><button class="btn btn-info" onclick="addSpeculativeGen();"><i  class="icon-plus"></i> </button>  Speculative Generality </h3>
+								<p> <h3><button class="btn btn-info" onclick="addLongParameter();"><i  class="icon-plus"></i> </button>  Long Parameter </h3>
 								<p>	<h3><button class="btn btn-info" onclick="addTempField();"><i  class="icon-plus"></i> </button>  Temporary Field </h3>		
-								<p>	<h3><button class="btn btn-info" onclick="addBadComment();"><i  class="icon-plus"></i> </button>  BadComment </h3>
+								<p>	<h3><button class="btn btn-info" onclick="addBadComment();"><i  class="icon-plus"></i> </button>  Bad Comment </h3>
 								<p>	<h3><button class="btn btn-info" onclick="addSwitch();"><i  class="icon-plus"></i> </button>  Switch Statement </h3>							
 						</div>						
 					  </div>
@@ -129,12 +131,16 @@
 									<div id="addLargeClass">Large Class on line :	</div>
 									<div id="addPrimitiveObs">Primitive Obsession on line :</div>
 									<div id="addLazyClass">Lazy Class on line :	</div>
+									<div id="addDataClass">Data Class on line :	</div>
 									<div id="addSpeculativeGen">Speculative Generality on line :	</div>
+									<div id="addLongParameter">Long Parameter on line :	</div>
 									<div id="addTempField">Temporary Field on line :	</div>
 									<div id="addBadComment">Bad Comment on line :	</div>
 									<div id="addSwitchStatement">Switch statement on line :	</div>	
 									<p>
-									<div><textarea id ="suggestedRef" name="suggestedRefactoring" class="form-control" column=20 rows=10 style="resize : none;" placeholder="Give your suggested refactoring"></textarea></div>																						
+									<h3>Suggested Refactoring</h3>
+									<textarea id ="suggestedRef" name="suggestedRefactoring" class="form-control" column=20 rows=10 style="resize : none;" placeholder="Give your suggested refactoring"></textarea>
+																												
 									<input type = "hidden" name="methodId" value="${microtaskClazz.methodName}">							
 									
 										<input type = "hidden" name="hiddenSmellIni" id="IDhiddenSmell"/>
@@ -192,7 +198,9 @@
 		function addLargeClass(){
 			fileId++;
 			var longMethod = '<input type="hidden" name="largeClass" value="Large Class" id="smell-'+fileId+'" />';
-			var lineLongMethod = '<input type="text" name="lineLargeClass" id="line-'+fileId+'" size="4"/>'
+			var lineId = '"line-'+fileId+'"';
+// 			var lineLongMethod = '<input type="text" name="lineLargeClass" id="line-'+fileId+'" style="width:20px;"/> <i class="icon-large icon-remove" onCLick="removeField('+lineId+');"></i>';
+	        var lineLongMethod = '<input type="text" name="lineLargeClass" id="line-'+fileId+'" style="width:20px;"/>';
 	        addElement('addLargeClass', 'p', 'file-' + fileId, longMethod);
 			addElement('addLargeClass','p','part-'+fileId, lineLongMethod);
 		}
@@ -200,7 +208,7 @@
 		function addPrimitiveObs(){
 			fileId++;
 			var primitiveObs = '<input type="hidden" name="primitiveObs" value="Primitive Obsession" id="smell-'+fileId+'" />';
-			var linePrimitiveObs = '<input type="text" name="linePrimitiveObs" id="line-'+fileId+'" />'
+			var linePrimitiveObs = '<input type="text" name="linePrimitiveObs" id="line-'+fileId+'" style="width:20px;"/>'
 	        addElement('addPrimitiveObs', 'p', 'file-' + fileId, primitiveObs);
 			addElement('addPrimitiveObs','p','part-'+fileId, linePrimitiveObs);
 		}
@@ -208,23 +216,39 @@
 		function addLazyClass(){
 			fileId++;
 			var lazyClass = '<input type="hidden" name="lazyClass" value="Lazy Class" id="smell-'+fileId+'" />';
-			var lineLazyClass = '<input type="text" name="lineLazyClass" id="line-'+fileId+'" />'
+			var lineLazyClass = '<input type="text" name="lineLazyClass" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addLazyClass', 'p', 'file-' + fileId, lazyClass);
 			addElement('addLazyClass','p','part-'+fileId, lineLazyClass);
+		}
+		
+		function addDataClass(){
+			fileId++;
+			var dataClass = '<input type="hidden" name="dataClass" value="Data Class" id="smell-'+fileId+'" />';
+			var lineDataClass = '<input type="text" name="lineDataClass" id="line-'+fileId+'" style="width:20px;" />'
+	        addElement('addDataClass', 'p', 'file-' + fileId, dataClass);
+			addElement('addDataClass','p','part-'+fileId, lineDataClass);
 		}
 		
 		function addSpeculativeGen(){
 			fileId++;
 			var speculativeGen = '<input type="hidden" name="speculativeGen" value="Speculative Generality" id="smell-'+fileId+'" />';
-			var lineSpeculativeGen = '<input type="text" name="lineSpeculativeGen" id="line-'+fileId+'" />'
+			var lineSpeculativeGen = '<input type="text" name="lineSpeculativeGen" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addSpeculativeGen', 'p', 'file-' + fileId, speculativeGen);
 			addElement('addSpeculativeGen','p','part-'+fileId, lineSpeculativeGen);
+		}
+		
+		function addLongParameter(){
+			fileId++;
+			var longParameter = '<input type="hidden" name="longParameter" value="Long Parameter" id="smell-'+fileId+'" />';
+			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" style="width:20px;"/>'
+	        addElement('addLongParameter', 'p', 'file-' + fileId, longParameter);
+			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
 		}
 		
 		function addTempField(){
 			fileId++;
 			var tempField = '<input type="hidden" name="tempField" value="Temporary Field" id="smell-'+fileId+'" />';
-			var lineTempField = '<input type="text" name="lineTempField" id="line-'+fileId+'" />'
+			var lineTempField = '<input type="text" name="lineTempField" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addTempField', 'p', 'file-' + fileId, tempField);
 			addElement('addTempField','p','part-'+fileId, lineTempField);
 		}
@@ -232,7 +256,7 @@
 		function addBadComment(){
 			fileId++;
 			var badComment = '<input type="hidden" name="badComment" value="Bad Comment" id="smell-'+fileId+'" />';
-			var lineBadComment = '<input type="text" name="lineBadComment" id="line-'+fileId+'" size="4" />'
+			var lineBadComment = '<input type="text" name="lineBadComment" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addBadComment', 'p', 'file-' + fileId, badComment);
 			addElement('addBadComment','p','part-'+fileId, lineBadComment);
 		}
@@ -240,7 +264,7 @@
 		function addSwitch(){
 			fileId++;
 			var switchStatement = '<input type="hidden" name="switchStatement" value="Switch Statement" id="smell-'+fileId+'" />';
-			var lineSwitchStatement= '<input type="text" name="lineSwitchStatement" id="line-'+fileId+'" size="4" />'
+			var lineSwitchStatement= '<input type="text" name="lineSwitchStatement" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addSwitchStatement', 'p', 'file-' + fileId, switchStatement);
 			addElement('addSwitchStatement','p','part-'+fileId, lineSwitchStatement);
 		}
@@ -253,6 +277,11 @@
 	        newElement.setAttribute('id', elementId);
 	        newElement.innerHTML = html;
 	        p.appendChild(newElement);
+	    }
+	    
+	    function removeField(elementId){
+	        var element = document.getElementById(elementId);
+	        element.parentNode.removeChild(element);
 	    }
 		
 	    function sendValue(){

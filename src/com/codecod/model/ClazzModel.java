@@ -60,10 +60,9 @@ public class ClazzModel extends TaskModel{
 	}
 	
 	public String insertClazz() {
+		
 		return String.format(
-				"INSERT INTO `clazz_microtask`(`clazzID`, `clazz_body`, `path`) VALUES ('%s','%s','%s')",this.clazzID,this.clazzBody,this.path);
+				"INSERT INTO `clazz_microtask`(`clazzID`, `clazz_body`, `path`) VALUES ('%s','%s','%s')",this.clazzID,this.clazzBody,this.path);	
 	}
-
-	
 	
 }

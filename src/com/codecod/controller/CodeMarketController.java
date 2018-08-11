@@ -91,24 +91,28 @@ public class CodeMarketController extends HttpServlet {
 			ResultSet MV = connection.executeTake("SELECT DISTINCT `microtaskID` FROM `detected_smell` WHERE `vote` <4 AND `answerID` NOT IN (SELECT answerID FROM `worker_history` WHERE `workerID` = '"+id+"') AND `microtaskID` NOT IN (SELECT `microtaskID` FROM `majority_vote` WHERE `voter_id`='"+id+"') ");
 			
 			String mtName = "";
+			String fileName = "";
+	
 			while(MV.next()) {
 				
 				if(MV.getString("microtaskID").contains("clazz")) {
-					ResultSet MVmicrotaskName = connection.executeTake(String.format("SELECT `path` FROM `clazz_microtask` WHERE `clazzID` = '%s'", MV.getString("microtaskID")));
+					ResultSet MVmicrotaskName = connection.executeTake(String.format("SELECT `file_name`, `path` FROM `clazz_microtask` INNER JOIN `task` USINg (`path`) WHERE `clazzID` = '%s'", MV.getString("microtaskID")));
 					if(MVmicrotaskName.next()) {
 						mtName = MVmicrotaskName.getString("path").substring((MVmicrotaskName.getString("path")).lastIndexOf("\\")+1);
+						fileName = MVmicrotaskName.getString("file_name");
 					}
 				}
 				else {
-					ResultSet MVmicrotaskName = connection.executeTake(String.format("SELECT `method_name` FROM `microtask` WHERE `method_id` = '%s'",MV.getString("microtaskID")));
+					ResultSet MVmicrotaskName = connection.executeTake(String.format("SELECT `method_name`,`file_name` FROM `microtask` INNER JOIN `task` USING (`path`) WHERE `method_id` = '%s'",MV.getString("microtaskID")));
 					if(MVmicrotaskName.next()) {
 						mtName = MVmicrotaskName.getString("method_name");
+						fileName = MVmicrotaskName.getString("file_name");
 					}
 				}
 			
 					MajorityVotingModel majVot = new MajorityVotingModel();
 					majVot.setMicrotaskID(MV.getString("microtaskID"));
-					majVot.setMicrotaskName(mtName);
+					majVot.setMicrotaskName(mtName+" from "+fileName);
 									
 					listMV.add(majVot);
 

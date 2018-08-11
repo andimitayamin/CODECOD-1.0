@@ -96,7 +96,7 @@ public class tes_decomposer extends HttpServlet {
 				
 				FileDecomposer zipFiles = new FileDecomposer();
 				List<String>PathFromDecomposer = zipFiles.extractZip(String.format("%s", files.getAbsolutePath()));
-				
+			
 				MySQLConnection connection = MySQLConnection.getInstance();
 
 				//Save method as microtask into DB
@@ -104,14 +104,16 @@ public class tes_decomposer extends HttpServlet {
 				List<MicrotaskModel> microtasks = task.getMicrotaskByMethod(PathFromDecomposer);
 				for (MicrotaskModel microtask : microtasks) {
 					connection.executeStore(microtask.insertMicrotask());
-				}
+				}  
 				
 				//Save class as microtask into DB
 				ClazzController clazz = new ClazzController();
 				List<ClazzModel>classes = clazz.getMicrotaskByClass(PathFromDecomposer);
 				for(ClazzModel temp : classes) {
-					
+									
 					connection.executeStore(temp.insertClazz());
+					
+					System.out.println("diclass");
 				}
 				 
 				//Save task file into DB
@@ -121,6 +123,8 @@ public class tes_decomposer extends HttpServlet {
 					task.setTaskName(files.getName());
 					task.setReqId(id);
 					connection.executeStore(task.insertTask());
+					
+					System.out.println("diTask");
 				}				
 
 			}

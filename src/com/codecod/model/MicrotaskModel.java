@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.github.javaparser.ast.stmt.BlockStmt;
 
-public class MicrotaskModel {
+public class MicrotaskModel extends TaskModel {
 	String microtaskID;
 	String declaration;
 	String pathFile;

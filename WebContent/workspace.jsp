@@ -128,8 +128,9 @@
 									<div id="addBadComment">Smell bad comment on line: </div>
 									<div id="addSwitchStatement">Smell switch statement on line :</div>
 									<p>
-									<div><textarea id ="suggestedRef" name="suggestedRefactoring" class="form-control" column=20 rows=10 style="resize : none;" placeholder="Give your suggested refactoring"></textarea></div>												
-									<input type = "hidden" name="methodId" value="${microtask.methodName}">							
+										<h3>Suggested Refactoring</h3>
+											<textarea id ="suggestedRef" name="suggestedRefactoring" class="form-control" column=20 rows=10 style="resize : none;" placeholder="Give your suggested refactoring"></textarea>
+																				<input type = "hidden" name="methodId" value="${microtask.methodName}">							
 									
 										<input type = "hidden" name="hiddenSmellIni" id="IDhiddenSmell"/>
 										<input type = "hidden" name="hiddenSmellLine" id="IDhiddenSmellLine"/>
@@ -186,7 +187,7 @@
 		function addLongMethod(){
 			fileId++;
 			var longMethod = '<input type="hidden" name="longMethod" value="Long Method" id="smell-'+fileId+'" />';
-			var lineLongMethod = '<input type="text" name="lineLongMethod" id="line-'+fileId+'" size="4" />'
+			var lineLongMethod = '<input type="text" name="lineLongMethod" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addLongMethod', 'p', 'file-' + fileId, longMethod);
 			addElement('addLongMethod','p','part-'+fileId, lineLongMethod);
 		}
@@ -194,7 +195,7 @@
 		function addLongParameter(){
 			fileId++;
 			var longParameter = '<input type="hidden" name="longParameter" value="Long Parameter" id="smell-'+fileId+'" />';
-			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" size="4" />'
+			var lineLongParameter = '<input type="text" name="lineLongParameter" id="line-'+fileId+'" style="width:20px;" />'
 	        addElement('addLongParameter', 'p', 'file-' + fileId, longParameter);
 			addElement('addLongParameter','p','part-'+fileId, lineLongParameter);
 		}
@@ -202,7 +203,7 @@
 		function addBadComment(){
 			fileId++;
 			var badComment = '<input type="hidden" name="badComment" value="Bad Comment" id="smell-'+fileId+'" />';
-			var lineBadComment = '<input type="text" name="lineBadComment" id="line-'+fileId+'" size="4" />'
+			var lineBadComment = '<input type="text" name="lineBadComment" id="line-'+fileId+'" style="width:20px;"/>'
 	        addElement('addBadComment', 'p', 'file-' + fileId, badComment);
 			addElement('addBadComment','p','part-'+fileId, lineBadComment);
 		}
@@ -210,7 +211,7 @@
 		function addSwitch(){
 			fileId++;
 			var switchStatement = '<input type="hidden" name="switchStatement" value="Switch Statement" id="smell-'+fileId+'" />';
-			var lineSwitchStatement= '<input type="text" name="lineSwitchStatement" id="line-'+fileId+'" size="4" />'
+			var lineSwitchStatement= '<input type="text" name="lineSwitchStatement" id="line-'+fileId+'" style="width:20px;"/>'
 	        addElement('addSwitchStatement', 'p', 'file-' + fileId, switchStatement);
 			addElement('addSwitchStatement','p','part-'+fileId, lineSwitchStatement);
 		}
