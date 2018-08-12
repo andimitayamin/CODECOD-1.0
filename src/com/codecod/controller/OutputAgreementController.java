@@ -79,23 +79,29 @@ public class OutputAgreementController extends HttpServlet {
 				OAlist.add(outAgree);
 			}
 			
-			ResultSet MV = connection.executeTake(String.format("SELECT DISTINCT `voteUp`,`voteDown`,`microtaskID`,`smell_name`,`line` FROM"
-					+ " (SELECT `microtaskID`,`smell_name`,`line` FROM `majority_vote` WHERE `microtaskID` = '%s') AS `mv`"
-					+ " INNER JOIN (SELECT COUNT(`vote`) AS `voteUp` FROM `majority_vote` WHERE `vote` = 1 AND `microtaskID` = '%s')AS `PartVoteUp` "
-					+ " INNER JOIN (SELECT COUNT(`vote`) AS `voteDown` FROM `majority_vote` WHERE `vote` = -1 AND `microtaskID` = '%s')AS `PartVoteDown` "
-					+ "GROUP BY `microtaskID` ", microtaskID,microtaskID,microtaskID));
+			
+			ResultSet MV = connection.executeTake(String.format("select distinct smell_name, line from majority_vote where microtaskID = '%s'",microtaskID));
 			
 			while(MV.next()) {
 				MajorityVotingModel majVot = new MajorityVotingModel();
 				majVot.setSmell(MV.getString("smell_name"));
 				majVot.setLine(MV.getInt("line"));
-				majVot.setVote_up(MV.getInt("voteUp"));
-				majVot.setVote_down(MV.getInt("voteDown"));
+				
+				ResultSet getVote = connection.executeTake(String.format("SELECT vote_up, vote_down FROM `majority_vote` "
+						+ "INNER JOIN (SELECT COUNT(vote) as vote_up from majority_vote WHERE microtaskID = '%s' AND smell_name = '%s' and line = '%s' AND vote = 1)as partOne "
+						+ "INNER JOIN (SELECT COUNT(vote) as vote_down from majority_vote WHERE microtaskID = '%s' AND smell_name = '%s' and line = '%s' AND vote = -1)as partTwo "
+						+ "WHERE `microtaskID`='%s' ", microtaskID, MV.getString("smell_name"), MV.getString("line") , microtaskID, MV.getString("smell_name"), MV.getString("line"),microtaskID));
+				if(getVote.next()) {
+					majVot.setVote_up(getVote.getInt("vote_up"));
+					majVot.setVote_down(getVote.getInt("vote_down"));
+					
+				}
+				
 				
 				MVlist.add(majVot);
 			}
 			
-			ResultSet suggestRef = connection.executeTake(String.format("SELECT suggested_refactoring FROM `worker_history` WHERE answerID IN "
+			ResultSet suggestRef = connection.executeTake(String.format("SELECT distinct suggested_refactoring FROM `worker_history` WHERE answerID IN "
 									+ "(SELECT answerID FROM detected_smell WHERE microtaskID = '%s')", microtaskID));
 			while(suggestRef.next()) {
 				answeredMicrotaskModel suggestRefactoring = new answeredMicrotaskModel();
@@ -116,7 +122,7 @@ public class OutputAgreementController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-	}
+	} 
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
